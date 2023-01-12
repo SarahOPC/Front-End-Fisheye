@@ -43,10 +43,32 @@ h1 {
     text-align: center;
     font-family: 'DM Sans';
 }
+
+.photographer_section article a {
+    display: flex;
+}
+
+.photographer_section article a div {
+    padding: 0.7em;
+}
+
+.photographer_section article a:link {
+    text-decoration: none;
+}
+
+.photographer_section article a:hover {
+    box-shadow: 5px 5px 10px #D3573C;
+    border-radius: 1em;
+}
+
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
     width: max-content;
+}
+
+.photographer_section article:first-child a div h2 {
+    width: auto;
 }
 
 .photographer_section article img {
