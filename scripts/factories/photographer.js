@@ -16,6 +16,7 @@ function photographerFactory(data) {
         linkDiv.appendChild(h2);
         a.appendChild(linkDiv);
         a.href = `./photographer.html?id=${id}`;
+        a.ariaLabel = "Lien vers la page personnelle du photographe";
         const h4 = document.createElement( 'h4' );
         h4.textContent = city + ', ' + country;
         const h5 = document.createElement( 'h5' );
