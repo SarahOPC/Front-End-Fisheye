@@ -6,7 +6,8 @@ function photographerFactory(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", "photo de profil du photographe");
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const h4 = document.createElement( 'h4' );

@@ -8,26 +8,26 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
+    <header aria-label="Page de présentation de chaque photographe">
+      <img src="assets/images/logo.png" alt="logo Fisheye" aria-label="logo Fisheye" class="logo" />
     </header>
-    <main id="main">
+    <main id="main" aria-label="bouton contact">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button aria-label="contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
-				<header>
+				<header aria-label="bouton fermer">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="bouton fermer" aria-label="bouton fermer" onclick="closeModal()" />
         </header>
-				<form>
+				<form  aria-label="Formulaire de contact">
 					<div>
 						<label>Prénom</label>
 						<input />
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button aria-label="contact" class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
