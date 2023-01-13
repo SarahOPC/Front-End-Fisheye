@@ -9,18 +9,33 @@ function retrieveIdInParams() {
 async function getPersonnalInformationsPhotographer() {
     let photographersInformations = JSON.parse(photographersData);
     let getIdFromUrl = retrieveIdInParams();
-    
+
     for (let i = 0; i < photographersInformations.photographers.length; i ++) {
             if (getIdFromUrl == photographersInformations.photographers[i].id) {
-                console.log(photographersInformations.photographers[i].name);
-                console.log(photographersInformations.photographers[i].city);
-                console.log(photographersInformations.photographers[i].country);
-                console.log(photographersInformations.photographers[i].tagline);
-                console.log(photographersInformations.photographers[i].price);
+                let photographer = 
+                    {
+                        name: photographersInformations.photographers[i].name,
+                        id: photographersInformations.photographers[i].id,
+                        city: photographersInformations.photographers[i].city,
+                        country: photographersInformations.photographers[i].country,
+                        tagline: photographersInformations.photographers[i].tagline,
+                        price: photographersInformations.photographers[i].price,
+                        portrait: photographersInformations.photographers[i].portrait
+                    }
+                
+                console.log(photographer);
+                return photographer;
             }
-    }
-    return ({
-        photographers: [...photographersInformations.photographers]})
+    } throw "An error has occured";
 }
 
-getPersonnalInformationsPhotographer();
+async function displayData() {
+    const photographer = await getPersonnalInformationsPhotographer();
+    console.log(photographer);
+    const photographersSection = document.querySelector(".photograph-header");
+    const photographerModel = photographerFactory(photographer);
+    const userCardDOM = photographerModel.getUserCardDOM();
+    photographersSection.appendChild(userCardDOM);
+};
+
+displayData();
