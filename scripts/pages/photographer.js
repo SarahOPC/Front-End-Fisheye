@@ -22,8 +22,6 @@ async function getPersonnalInformationsPhotographer() {
                         price: photographersInformations.photographers[i].price,
                         portrait: photographersInformations.photographers[i].portrait
                     }
-                
-                console.log(photographer);
                 return photographer;
             }
     } throw "An error has occured";
@@ -31,7 +29,6 @@ async function getPersonnalInformationsPhotographer() {
 
 async function displayData() {
     const photographer = await getPersonnalInformationsPhotographer();
-    console.log(photographer);
     const photographersSection = document.querySelector(".photograph-header");
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
@@ -39,3 +36,32 @@ async function displayData() {
 };
 
 displayData();
+
+async function getMediaFromPhotographer() {
+    let photographerMedias = JSON.parse(photographersData);
+    let getIdFromUrl = retrieveIdInParams();
+
+    photographerMedias.media.forEach(element => {    
+        if (getIdFromUrl == element.photographerId) {
+            let media = 
+                {
+                    image: element.image,
+                    alt: element.title,
+                    title: element.title,
+                    likes: element.likes
+                }
+                return media;
+        }
+    })
+}
+
+async function displayMedia() {
+    const media = await getMediaFromPhotographer();
+    console.log(media);
+    const mediaSection = document.querySelector(".photograph-body");
+    const mediaModel = mediaFactory(media);
+    const getmediaDOM = mediaModel.getmediaDOM();
+    mediaSection.appendChild(getmediaDOM);
+};
+
+displayMedia();
