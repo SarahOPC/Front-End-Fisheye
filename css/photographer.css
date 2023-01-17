@@ -19,6 +19,9 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    position: relative;
+    left: 40%;
+    top: 40%;
 }
 
 .modal {
@@ -73,4 +76,45 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+    border-radius: 7em;
+    object-fit: cover;
+    position: absolute;
+    right: 11%;
+    top: 19%;
+}
+
+.logo {
+    border-radius: 0em;
+    position: initial;
+}
+
+h2 {
+    color: #D3573C;
+    font-size: 36px;
+    margin-left: 3%;
+    margin-bottom: 0.5em;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+h4 {
+    font-size: 24px;
+    color: #901C1C;
+    margin-left: 3%;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+h5 {
+    color: #525252;
+    font-size: 18px;
+    margin-left: 3%;
+    margin-top: 0.5em;
 }
