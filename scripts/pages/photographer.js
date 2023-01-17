@@ -57,7 +57,6 @@ async function getMediaFromPhotographer() {
 
 async function displayMedia() {
     const media = await getMediaFromPhotographer();
-    console.log(media);
     const mediaSection = document.querySelector(".photograph-body");
     const mediaModel = mediaFactory(media);
     const getmediaDOM = mediaModel.getmediaDOM();
