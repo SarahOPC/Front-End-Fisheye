@@ -41,24 +41,35 @@ async function getMediaFromPhotographer() {
     let photographerMedias = JSON.parse(photographersData);
     let getIdFromUrl = retrieveIdInParams();
 
-    photographerMedias.media.forEach(element => {    
-        if (getIdFromUrl == element.photographerId) {
-            let media = 
-                {
-                    image: element.image,
-                    alt: element.title,
-                    title: element.title,
-                    likes: element.likes
-                }
-                return media;
+    for (let i = 0; i < photographerMedias.media.length; i ++) {
+        if (getIdFromUrl == photographerMedias.media[i].photographerId) {
+            if (photographerMedias.media[i].photographerId.image) {
+                let medias = 
+                    {
+                        image: photographerMedias.media[i].image,
+                        alt: photographerMedias.media[i].title,
+                        title: photographerMedias.media[i].title,
+                        likes: photographerMedias.media[i].likes
+                    }
+                return medias;
+            } else {
+                let medias = 
+                    {
+                        video: photographerMedias.media[i].video,
+                        title: photographerMedias.media[i].title,
+                        likes: photographerMedias.media[i].likes
+                    }
+                return medias;
+            }
+            
         }
-    })
+    } throw "An error has occured to retrieve media";
 }
 
 async function displayMedia() {
-    const media = await getMediaFromPhotographer();
+    const medias = await getMediaFromPhotographer();
     const mediaSection = document.querySelector(".photograph-body");
-    const mediaModel = mediaFactory(media);
+    const mediaModel = mediaFactory(medias);
     const getmediaDOM = mediaModel.getmediaDOM();
     mediaSection.appendChild(getmediaDOM);
 };
