@@ -41,29 +41,31 @@ async function getMediaFromPhotographer() {
     let photographerMedias = JSON.parse(photographersData);
     let getIdFromUrl = retrieveIdInParams();
 
+    let medias = [];
     for (let i = 0; i < photographerMedias.media.length; i ++) {
         if (getIdFromUrl == photographerMedias.media[i].photographerId) {
-            if (photographerMedias.media[i].photographerId.image) {
-                let medias = 
+            if (photographerMedias.media[i].image != undefined) {
+                let media = 
                     {
                         image: photographerMedias.media[i].image,
                         alt: photographerMedias.media[i].title,
                         title: photographerMedias.media[i].title,
                         likes: photographerMedias.media[i].likes
                     }
-                return medias;
-            } else {
-                let medias = 
+                medias.push(media);
+            };
+            if (photographerMedias.media[i].image == undefined) {
+                let media = 
                     {
                         video: photographerMedias.media[i].video,
                         title: photographerMedias.media[i].title,
                         likes: photographerMedias.media[i].likes
                     }
-                return medias;
+                medias.push(media);
             }
-            
         }
-    } throw "An error has occured to retrieve media";
+    }
+    return medias;
 }
 
 async function displayMedia() {
@@ -75,3 +77,15 @@ async function displayMedia() {
 };
 
 displayMedia();
+
+async function getTotalLikes() {
+    const medias = await getMediaFromPhotographer();
+    let totalLikes;
+    for (let i = 0; i < medias.length; i ++) {
+        totalLikes += medias[i].likes;
+    }
+    console.log(totalLikes);
+    return totalLikes;
+}
+
+getTotalLikes();

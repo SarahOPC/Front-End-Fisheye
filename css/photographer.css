@@ -5,7 +5,7 @@
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
+    margin: 5em 10em;
 }
 
 .contact_button {
@@ -84,8 +84,8 @@ img {
     border-radius: 7em;
     object-fit: cover;
     position: absolute;
-    right: 11%;
-    top: 19%;
+    right: 14%;
+    top: 30%;
 }
 
 .logo {
@@ -118,4 +118,36 @@ h5 {
     font-size: 18px;
     margin-left: 3%;
     margin-top: 0.5em;
+}
+
+video, .work img {
+    width: 23em;
+    height: 18em;
+    border-radius: 5px;
+    object-fit: cover;
+    position: relative;
+    right: 0%;
+    top: 0%;
+    background: #C4C4C4;
+}
+
+.photograph-body div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.photograph-body article {
+    padding: 1em;
+}
+
+.fixedDiv {
+    position: fixed;
+    bottom: 0%;
+    right: 5%;
+}
+
+.photograph-body .infos {
+    display: flex;
+    justify-content: space-between;
 }
