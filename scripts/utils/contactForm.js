@@ -1,6 +1,7 @@
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+    insertName();
 
     const bodyHeader = document.querySelector("body header");
     const bodyMain = document.querySelector("body main");
@@ -26,4 +27,14 @@ function insertName() {
     firstH2.insertAdjacentElement("afterend", h2);
 }
 
-insertName();
+function retrieveDataFromForm() {
+    const userFirstName = document.querySelector(".modal-form #userFirstName").value;
+    const userLastName = document.querySelector(".modal-form #userLastName").value;
+    const userEmail = document.querySelector(".modal-form #userEmail").value;
+    const userMessage = document.querySelector(".modal-form #userMessage").value;
+    console.log(userFirstName);
+    console.log(userLastName);
+    console.log(userEmail);
+    console.log(userMessage);
+}
+
