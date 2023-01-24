@@ -16,6 +16,9 @@ function mediaFactory(data) {
                 const pLikes = document.createElement( 'p' );
                 pTitle.textContent = data[i].title;
                 pLikes.textContent = data[i].likes;
+                const heart = document.createElement( 'i' );
+                heart.setAttribute("class", "fa fa-heart");
+                pLikes.appendChild(heart);
                 infos.appendChild(pTitle);
                 infos.appendChild(pLikes);
                 const article = document.createElement( 'article' );
@@ -34,6 +37,9 @@ function mediaFactory(data) {
                 const pLikes = document.createElement( 'p' );
                 pTitle.textContent = data[i].title;
                 pLikes.textContent = data[i].likes;
+                const heart = document.createElement( 'i' );
+                heart.setAttribute("class", "fa fa-heart");
+                pLikes.appendChild(heart);
                 infos.appendChild(pTitle);
                 infos.appendChild(pLikes);
                 const article = document.createElement( 'article' );

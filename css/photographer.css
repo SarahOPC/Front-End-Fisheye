@@ -120,6 +120,12 @@ h5 {
     margin-top: 0.5em;
 }
 
+h6 {
+    color: #757575;
+    font-size: 9px;
+    text-align: center;
+}
+
 video, .work img {
     width: 23em;
     height: 18em;
@@ -145,9 +151,25 @@ video, .work img {
     position: fixed;
     bottom: 0%;
     right: 5%;
+    background: #DB8876;
+    border-radius: 0.3em 0.3em 0em 0em;
+    height: 3em;
+}
+
+.fixedDiv p {
+    margin: 1em;
+    font-weight: 600;
+    text-align: center;
 }
 
 .photograph-body .infos {
     display: flex;
     justify-content: space-between;
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #911C1C;
+}
+
+.fa {
+    margin-left: 0.5em;
 }

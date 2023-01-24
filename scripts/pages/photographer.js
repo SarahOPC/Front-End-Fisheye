@@ -80,12 +80,35 @@ displayMedia();
 
 async function getTotalLikes() {
     const medias = await getMediaFromPhotographer();
-    let totalLikes;
+    let totalLikes = 0;
     for (let i = 0; i < medias.length; i ++) {
         totalLikes += medias[i].likes;
     }
-    console.log(totalLikes);
     return totalLikes;
 }
 
-getTotalLikes();
+async function getDailyPrice() {
+    const price = await getPersonnalInformationsPhotographer();
+    const dailyPrice = price.price;
+    return dailyPrice;
+}
+
+async function displayFixedDiv() {
+    const likes = await getTotalLikes();
+    const price = await getDailyPrice();
+    const photographerBody = document.querySelector(".photograph-body");
+    const div = document.createElement( 'div' );
+    div.setAttribute("class", "fixedDiv");
+    const pTotalLikes = document.createElement( 'p' );
+    const pDailyPrice = document.createElement( 'p' );
+    pTotalLikes.textContent = likes;
+    pDailyPrice.textContent = price + "€ / jour";
+    const heart = document.createElement( 'i' );
+    heart.setAttribute("class", "fa fa-heart");
+    pTotalLikes.appendChild(heart);
+    div.appendChild(pTotalLikes);
+    div.appendChild(pDailyPrice);
+    photographerBody.appendChild(div);
+}
+
+displayFixedDiv();

@@ -21,11 +21,14 @@ function photographerFactory(data) {
         h4.textContent = city + ', ' + country;
         const h5 = document.createElement( 'h5' );
         h5.textContent = tagline;
+        const h6 = document.createElement( 'h6' );
+        h6.textContent = price + "€ / jour";
         const div = document.createElement( 'div' );
         article.appendChild(a);
         article.appendChild(div);
         div.appendChild(h4);
         div.appendChild(h5);
+        div.appendChild(h6);
         return (article);
     }
     return { name, picture, city, country, getUserCardDOM }
