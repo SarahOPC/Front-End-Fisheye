@@ -22,7 +22,7 @@ function photographerFactory(data) {
         const h5 = document.createElement( 'h5' );
         h5.textContent = tagline;
         const h6 = document.createElement( 'h6' );
-        h6.textContent = price + "€ / jour";
+        h6.textContent = price + " € / jour";
         const div = document.createElement( 'div' );
         article.appendChild(a);
         article.appendChild(div);

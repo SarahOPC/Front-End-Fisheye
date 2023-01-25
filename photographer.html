@@ -14,18 +14,20 @@
     </header>
     <main id="main" aria-label="bouton contact">
       <div class="photograph-header">
-        <button aria-label="contact" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button aria-label="show-modal" class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
       <div class="photograph-body">
       </div>
+      <div class="lightbox">
+      </div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
-				<header aria-label="bouton fermer">
+			<div class="modal" aria-label="Modal title" role="dialog" aria-modal="true" tabindex="-1">
+				<header aria-label="close modal">
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" alt="bouton fermer" aria-label="bouton fermer" onclick="closeModal()" />
         </header>
-				<form aria-label="Formulaire de contact">
+				<form aria-label="contact form">
 					<div class="modal-form">
             <label for="userFirstName">Prénom</label>
             <input type="text" id="userFirstName" name="userFirstName">
@@ -36,7 +38,7 @@
             <label for="userMessage">Votre message</label>
             <textarea id="userMessage" name="userMessage" rows="5"></textarea>
 					</div>
-          <button aria-label="contact" class="contact_button" onclick="retrieveDataFromForm()">Envoyer</button>
+          <button aria-label="send" class="contact_button" id="contact_button_send" onclick="retrieveDataFromForm()">Envoyer</button>
 				</form>
 			</div>
 		</div>

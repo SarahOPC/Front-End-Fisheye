@@ -38,3 +38,8 @@ function retrieveDataFromForm() {
     console.log(userMessage);
 }
 
+document.getElementById("contact_button_send").addEventListener("click", function(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    closeModal();
+    });

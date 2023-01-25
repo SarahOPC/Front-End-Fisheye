@@ -10,6 +10,10 @@ function mediaFactory(data) {
                 const videos = document.createElement( 'video' );
                 videos.setAttribute("src" , videoMedia);
                 videos.setAttribute("type", "video/mp4");
+                videos.setAttribute("controls", "");
+                //videos.setAttribute("onclick", openLightbox());
+                //videos.setAttribute("onclick", currentSlide(index + 1));
+                //videos.setAttribute("class", "hover-shadow");
                 const infos = document.createElement( 'div' );
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
@@ -31,6 +35,9 @@ function mediaFactory(data) {
                 const img = document.createElement( 'img' );
                 img.setAttribute("src", picture);
                 img.setAttribute("alt", data[i].title);
+                //img.setAttribute("onclick", openLightbox());
+                //img.setAttribute("onclick", currentSlide(n));
+                //img.setAttribute("class", "hover-shadow");
                 const infos = document.createElement( 'div' );
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
