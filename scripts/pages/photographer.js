@@ -120,7 +120,10 @@ function openLightbox() {
 	lightbox.style.display = "block";
 }
 
-
+function closeLightbox() {
+    const lightbox = document.getElementById("myLightbox");
+    lightbox.style.display = "none";
+}
 
 
 

@@ -213,6 +213,21 @@ video, .work img {
 
 #myLightbox {
     background: #e5e5e5;
+    position: fixed;
+    top: 5%;
+    left: 15%;
+    width: 53em;
+    height: 35em;
 }
 
+#myLightbox .lightbox header img {
+    cursor: pointer;
+    width: 2em;
+    height: 2em;
+    border-radius: 0;
+    object-fit: none;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
 /*---------------------------LIGHTBOX------------------------------*/
