@@ -12,6 +12,7 @@ function mediaFactory(data) {
                 videos.setAttribute("type", "video/mp4");
                 videos.setAttribute("controls", "");
                 videos.setAttribute("onclick", "openLightbox()");
+                videos.setAttribute("class", "myMedias");
                 const infos = document.createElement( 'div' );
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
@@ -34,6 +35,7 @@ function mediaFactory(data) {
                 img.setAttribute("src", picture);
                 img.setAttribute("alt", data[i].title);
                 img.setAttribute("onclick", "openLightbox()");
+                img.setAttribute("class", "myMedias");
                 const infos = document.createElement( 'div' );
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );

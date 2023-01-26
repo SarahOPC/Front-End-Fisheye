@@ -18,16 +18,6 @@
       </div>
       <div class="photograph-body">
       </div>
-      <div id="myLightbox" class="myLightbox">
-        <div class="lightbox" aria-label="Lightbox title" role="dialog" aria-modal="true" tabindex="-1">
-          <header aria-label="close modal">
-            <img src="assets/icons/redClose.svg" alt="bouton fermer" aria-label="close dialog" onclick="closeLightbox()" />
-          </header>
-          <div class="container_medias">
-            <p class="title_medias_lb"></p>
-          </div>
-        </div>
-      </div>
     </main>
     <div id="contact_modal">
 			<div class="modal" aria-label="Modal title" role="dialog" aria-modal="true" tabindex="-1">
@@ -50,6 +40,20 @@
 				</form>
 			</div>
 		</div>
+
+    <div id="myLightbox" class="myLightbox">
+      <div class="lightbox" aria-label="Lightbox title" role="dialog" aria-modal="true" tabindex="-1">
+        <header aria-label="close modal">
+          <img src="assets/icons/redClose.svg" alt="bouton fermer" aria-label="close dialog" onclick="closeLightbox()" />
+        </header>
+        <i class="fa fa-chevron-right"></i>
+        <i class="fa fa-chevron-left"></i>
+        <div id="container_medias">
+          <p class="title_medias_lb"></p>
+        </div>
+      </div>
+    </div>
+
     <script src="./data/photographers.js"></script>
     <script src="./scripts/factories/photographerFactory.js"></script>
     <script src="./scripts/factories/mediaFactory.js"></script>

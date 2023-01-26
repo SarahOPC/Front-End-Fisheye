@@ -170,6 +170,11 @@ video, .work img {
     right: 0%;
     top: 0%;
     background: #C4C4C4;
+    transition: all 625ms;
+}
+
+video:hover, .work img:hover {
+    transform: scale(1.05);
 }
 
 .photograph-body div {
@@ -219,15 +224,50 @@ video, .work img {
     width: 53em;
     height: 35em;
 }
+#myLightbox .lightbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#myLightbox .lightbox #container_medias {
+    background-color: purple;
+    height: 23em;
+    width: 40em;
+}
 
 #myLightbox .lightbox header img {
     cursor: pointer;
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
     border-radius: 0;
     object-fit: none;
     position: absolute;
     right: 5%;
     top: 5%;
 }
+
+#myLightbox .lightbox .fa {
+    color: #901c1c;
+    position: absolute;
+    top: 50%;
+    font-size: 1.7em;
+}
+
+#myLightbox .lightbox .fa.fa-chevron-right {
+    right: 7%;
+}
+
+#myLightbox .lightbox .fa.fa-chevron-left {
+    left: 6%;
+}
+
+#myLightbox #container_medias img {
+    width: 35em;
+    height: 21em;
+    border-radius: 0.5em;
+    object-fit: contain;
+    top: 19%;
+}
+
 /*---------------------------LIGHTBOX------------------------------*/

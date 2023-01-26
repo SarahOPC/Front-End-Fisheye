@@ -116,30 +116,39 @@ displayFixedDiv();
 //---------------------------LIGHTBOX---------------------------//
 
 function openLightbox() {
-    const lightbox = document.getElementById("myLightbox");
-	lightbox.style.display = "block";
+    const myMedia = document.querySelectorAll(".myMedias");
+    for(let i = 0; i < myMedia.length; i ++) {
+        if(myMedia[i].controls == true){
+            myMedia[i].addEventListener('click', function() {
+                const myNewMedia = document.createElement( 'video' );
+                myNewMedia.src = myMedia[i].src;
+                myNewMedia.setAttribute("type", "video/mp4");
+                myNewMedia.setAttribute("controls", "");
+                const container_medias = document.getElementById("container_medias");
+                container_medias.appendChild(myNewMedia);
+                const lightbox = document.getElementById("myLightbox");
+                lightbox.style.display = "block";
+            })
+        } else {
+            myMedia[i].addEventListener('click', function() {
+                const myNewMedia = document.createElement( 'img' );
+                myNewMedia.src = myMedia[i].src;
+                const container_medias = document.getElementById("container_medias");
+                container_medias.appendChild(myNewMedia);
+                const lightbox = document.getElementById("myLightbox");
+                lightbox.style.display = "block";
+            })
+        }
+    }
+    myMedia.forEach(function(media) {
+        
+    })
 }
 
 function closeLightbox() {
     const lightbox = document.getElementById("myLightbox");
     lightbox.style.display = "none";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //---------------------------LIGHTBOX---------------------------//
@@ -177,119 +186,4 @@ async function getMediasForLightbox() {
     }
     return allMedia;
 }
-
-async function getLightboxDom() {
-    let title = await getTitleForLightbox();
-    let number = await getNumberForLightbox();
-    let media = await getMediasForLightbox();
-    
-    const div = document.createElement( 'div' );
-    div.setAttribute("id", "myLightbox");
-    div.setAttribute("class", "lightbox");
-
-    const span = document.createElement( 'span' );
-    span.setAttribute("class", "close cursor");
-    span.setAttribute("onclick", "closeLightbox");
-
-    const divContent = document.createElement( 'div' );
-    divContent.setAttribute("class", "lb-content");
-
-    const divSlide = document.createElement( 'div' );
-    divSlide.setAttribute("class", "mySlides");
-
-    const divNumber = document.createElement( 'div' );
-    divNumber.setAttribute("class", "numberText");
-    //divNumber.textContent = 
-    const imgLb = document.createElement( 'img' );
-    //imgLb.setAttribute("src", )
-
-    // Next/previous controls
-    const aPrev = document.createElement( 'a' );
-    aPrev.setAttribute("class", "prev");
-    aPrev.setAttribute("onclick", "plusSlides(-1)");
-    aPrev.textContent = "&#10094;";
-
-    const aNext = document.createElement( 'a' );
-    aNext.setAttribute("class", "next");
-    aNext.setAttribute("onclick", "plusSlides(1)");
-    aNext.textContent = "&#10095;";
-
-    // Caption text
-    const divCaption = document.createElement( 'div' );
-    divCaption.setAttribute("class", "caption-container");
-    const pCaption = document.createElement( 'p' );
-    pCaption.setAttribute("id", "caption");
-
-    // Thumbnail image controls
-    const divColumn = document.createElement( 'div' );
-    divColumn.setAttribute("class", "column");
-
-    const imgLightbox = document.createElement( 'img' );
-    imgLightbox.setAttribute("class", "lbLightbox");
-    //imgLightbox.setAttribute("src", );
-    //imgLightbox.setAttribute("alt", );
-
-    divCaption.appendChild(pCaption);
-    divColumn.appendChild(imgLightbox);
-    divNumber.appendChild(imgLb);
-    divSlide.appendChild(divNumber);
-    divContent.appendChild(divColumn);
-    divContent.appendChild(divCaption);
-    divContent.appendChild(aPrev);
-    divContent.appendChild(aNext);
-    divContent.appendChild(divSlide);
-    div.appendChild(span);
-    div.appendChild(divContent); 
-    }
-
-getLightboxDom();
 */
-
-function openLightbox() {
-    document.getElementById("myLightbox").style.display = "block";
-}
-/*
-
-function closeLightbox() {
-    document.getElementById("myLightbox").style.display = "none";
-}
-
-let slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-    showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-    let i;
-    let slides = document.getElementsByClassName("mySlides");
-    let dots = document.getElementsByClassName("lbLightbox");
-    let captionText = document.getElementById("caption");
-
-    if (n > slides.length) {
-        slideIndex = 1
-    }
-    if (n < 1) {
-        slideIndex = slides.length
-    }
-
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-    captionText.innerHTML = dots[slideIndex-1].alt;
-}
- */
