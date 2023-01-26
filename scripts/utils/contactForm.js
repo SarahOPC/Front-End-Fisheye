@@ -15,8 +15,8 @@ function closeModal() {
 
     const bodyHeader = document.querySelector("body header");
     const bodyMain = document.querySelector("body main");
-    bodyHeader.setAttribute("class", "");
-    bodyMain.setAttribute("class", "");
+    bodyHeader.removeAttribute("class");
+    bodyMain.removeAttribute("class");
 }
 
 function insertName() {

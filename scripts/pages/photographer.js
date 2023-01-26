@@ -114,6 +114,32 @@ async function displayFixedDiv() {
 displayFixedDiv();
 
 //---------------------------LIGHTBOX---------------------------//
+
+function openLightbox() {
+    const lightbox = document.getElementById("myLightbox");
+	lightbox.style.display = "block";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------LIGHTBOX---------------------------//
 /* 
 async function getTitleForLightbox() {
     const medias = await getMediaFromPhotographer();
@@ -214,10 +240,12 @@ async function getLightboxDom() {
     }
 
 getLightboxDom();
+*/
 
 function openLightbox() {
     document.getElementById("myLightbox").style.display = "block";
 }
+/*
 
 function closeLightbox() {
     document.getElementById("myLightbox").style.display = "none";

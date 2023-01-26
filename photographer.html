@@ -18,7 +18,15 @@
       </div>
       <div class="photograph-body">
       </div>
-      <div class="lightbox">
+      <div id="myLightbox" class="myLightbox">
+        <div class="lightbox" aria-label="Lightbox title" role="dialog" aria-modal="true" tabindex="-1">
+          <header aria-label="close modal">
+            <img src="assets/icons/close.svg" alt="bouton fermer" aria-label="close dialog" onclick="closeModal()" />
+          </header>
+          <div class="container_medias">
+            <p class="title_medias_lb"></p>
+          </div>
+        </div>
       </div>
     </main>
     <div id="contact_modal">

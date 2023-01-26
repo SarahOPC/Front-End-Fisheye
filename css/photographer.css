@@ -164,7 +164,7 @@ h6 {
 video, .work img {
     width: 23em;
     height: 18em;
-    border-radius: 5px;
+    border-radius: 0.5em;
     object-fit: cover;
     position: relative;
     right: 0%;
@@ -208,3 +208,11 @@ video, .work img {
 .fa {
     margin-left: 0.5em;
 }
+
+/*---------------------------LIGHTBOX------------------------------*/
+
+#myLightbox {
+    background: #e5e5e5;
+}
+
+/*---------------------------LIGHTBOX------------------------------*/
