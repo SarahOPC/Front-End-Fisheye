@@ -161,7 +161,7 @@ h6 {
     margin-left: 3%;
 }
 
-video, .work img {
+.work video, .work img {
     width: 23em;
     height: 18em;
     border-radius: 0.5em;
@@ -173,7 +173,7 @@ video, .work img {
     transition: all 625ms;
 }
 
-video:hover, .work img:hover {
+.work video:hover, .work img:hover {
     transform: scale(1.05);
 }
 
@@ -217,10 +217,11 @@ video:hover, .work img:hover {
 /*---------------------------LIGHTBOX------------------------------*/
 
 #myLightbox {
+    display: none;
     background: #e5e5e5;
     position: fixed;
-    top: 5%;
-    left: 15%;
+    top: 11%;
+    left: 22%;
     width: 53em;
     height: 35em;
 }
@@ -231,7 +232,6 @@ video:hover, .work img:hover {
 }
 
 #myLightbox .lightbox #container_medias {
-    background-color: purple;
     height: 23em;
     width: 40em;
 }
@@ -263,11 +263,23 @@ video:hover, .work img:hover {
 }
 
 #myLightbox #container_medias img {
-    width: 35em;
-    height: 21em;
+    width: 25em;
+    height: 33em;
     border-radius: 0.5em;
     object-fit: contain;
-    top: 19%;
+    position: absolute;
+    top: 3%;
+    left: 27%;
+}
+
+#myLightbox #container_medias video {
+    width: 29em;
+    height: 22em;
+    border-radius: 0.5em;
+    object-fit: cover;
+    position: absolute;
+    top: 18%;
+    left: 23%;
 }
 
 /*---------------------------LIGHTBOX------------------------------*/

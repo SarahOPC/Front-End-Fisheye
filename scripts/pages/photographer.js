@@ -118,7 +118,7 @@ displayFixedDiv();
 function openLightbox() {
     const myMedia = document.querySelectorAll(".myMedias");
     for(let i = 0; i < myMedia.length; i ++) {
-        if(myMedia[i].controls == true){
+        if(myMedia[i].controls === true){
             myMedia[i].addEventListener('click', function() {
                 const myNewMedia = document.createElement( 'video' );
                 myNewMedia.src = myMedia[i].src;
@@ -140,9 +140,6 @@ function openLightbox() {
             })
         }
     }
-    myMedia.forEach(function(media) {
-        
-    })
 }
 
 function closeLightbox() {
