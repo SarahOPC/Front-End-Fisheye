@@ -124,6 +124,10 @@ function openLightbox() {
                 myNewMedia.src = myMedia[i].src;
                 myNewMedia.setAttribute("type", "video/mp4");
                 myNewMedia.setAttribute("controls", "");
+                let titleArray = myNewMedia.src.split("/");
+                let titleAndExtension = titleArray[titleArray.length - 1];
+                let title = titleAndExtension.split(".")[0];
+                myNewMedia.setAttribute("id", title);
                 const container_medias = document.getElementById("container_medias");
                 container_medias.appendChild(myNewMedia);
                 const lightbox = document.getElementById("myLightbox");
@@ -133,6 +137,11 @@ function openLightbox() {
             myMedia[i].addEventListener('click', function() {
                 const myNewMedia = document.createElement( 'img' );
                 myNewMedia.src = myMedia[i].src;
+                let titleArray = myNewMedia.src.split("/");
+                let titleAndExtension = titleArray[titleArray.length - 1];
+                let title = titleAndExtension.split(".")[0];
+                myNewMedia.setAttribute("id", title);
+                myNewMedia.setAttribute("alt", title);
                 const container_medias = document.getElementById("container_medias");
                 container_medias.appendChild(myNewMedia);
                 const lightbox = document.getElementById("myLightbox");
@@ -147,40 +156,23 @@ function closeLightbox() {
     lightbox.style.display = "none";
 }
 
+let currentMedia = 0;
+
+document.querySelector(".lightbox #left-arrow").addEventListener("click", function() {
+    console.log(currentMedia);
+    const myMedia = document.querySelectorAll(".photograph-body div article.work");
+    console.log(myMedia);
+    console.log(myMedia[currentMedia].children[0].src);
+    currentMedia = Math.ceil((currentMedia - 1 + myMedia.length) % myMedia.length);
+    console.log(currentMedia);
+    myMedia[currentMedia].children[0].src = myMedia[currentMedia].children[0].getAttribute("src");
+    console.log(myMedia[currentMedia].children[0].src);
+});
+
+document.querySelector(".lightbox #right-arrow").addEventListener("click", function() {
+    const myMedia = document.querySelectorAll(".photograph-body div article.work");
+    currentMedia = Math.ceil((currentMedia + 1) % myMedia.length);
+    myMedia[currentMedia].children[0].src = myMedia[currentMedia].children[0].getAttribute("src");
+});
 
 //---------------------------LIGHTBOX---------------------------//
-/* 
-async function getTitleForLightbox() {
-    const medias = await getMediaFromPhotographer();
-    let allTitle = [];
-    for (let i = 0; i < medias.length; i ++) {
-        let title = medias[i].title;
-        allTitle.push(title);
-    }
-    return allTitle;
-}
-
-async function getNumberForLightbox() {
-    const medias = await getMediaFromPhotographer();
-    let number = 0;
-    for (let i = 0; i < medias.length; i ++) {
-        number = medias.length;
-    }
-    return number;
-}
-
-async function getMediasForLightbox() {
-    const medias = await getMediaFromPhotographer();
-    let allMedia = [];
-    for (let i = 0; i < medias.length; i ++) {
-        if(medias[i].video != undefined) {
-            let media = medias[i].video;
-            allMedia.push(media);
-        } else {
-            let media = medias[i].image;
-            allMedia.push(media);
-        }
-    }
-    return allMedia;
-}
-*/
