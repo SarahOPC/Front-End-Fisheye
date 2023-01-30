@@ -248,6 +248,7 @@ h6 {
 }
 
 #myLightbox .lightbox .fa {
+    cursor: pointer;
     color: #901c1c;
     position: absolute;
     top: 50%;
@@ -264,7 +265,7 @@ h6 {
 
 #myLightbox #container_medias img {
     width: 25em;
-    height: 33em;
+    height: 30em;
     border-radius: 0.5em;
     object-fit: contain;
     position: absolute;
@@ -280,6 +281,13 @@ h6 {
     position: absolute;
     top: 18%;
     left: 23%;
+}
+
+.title_medias_lb {
+    position: absolute;
+    bottom: 0%;
+    left: 19%;
+    color: #911C1C;
 }
 
 /*---------------------------LIGHTBOX------------------------------*/
