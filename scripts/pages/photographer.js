@@ -132,6 +132,10 @@ function openLightbox() {
                 container_medias.appendChild(myNewMedia);
                 const lightbox = document.getElementById("myLightbox");
                 lightbox.style.display = "block";
+                const bodyHeader = document.querySelector("body header");
+                const bodyMain = document.querySelector("body main");
+                bodyHeader.setAttribute("class", "modalBlur");
+                bodyMain.setAttribute("class", "modalBlur");
             })
         } else {
             myMedia[i].addEventListener('click', function() {
@@ -146,6 +150,10 @@ function openLightbox() {
                 container_medias.appendChild(myNewMedia);
                 const lightbox = document.getElementById("myLightbox");
                 lightbox.style.display = "block";
+                const bodyHeader = document.querySelector("body header");
+                const bodyMain = document.querySelector("body main");
+                bodyHeader.setAttribute("class", "modalBlur");
+                bodyMain.setAttribute("class", "modalBlur");
             })
         }
     }
@@ -156,75 +164,82 @@ function closeLightbox() {
     lightbox.style.display = "none";
     const container_medias = document.getElementById("container_medias");
     container_medias.innerHTML = '';
-    let currentImageVideoElement = container_medias.querySelector("img, video");
-    if (currentImageVideoElement) {
-        currentImageVideoElement.remove();
-    }
+    const bodyHeader = document.querySelector("body header");
+    const bodyMain = document.querySelector("body main");
+    bodyHeader.removeAttribute("class");
+    bodyMain.removeAttribute("class");
+    location.reload();
 }
 
 let currentMedia = 0;
 
 function leftArrowScroll() {
-    let leftArrow = document.querySelector(".lightbox #left-arrow");
-    leftArrow.addEventListener("click", function() {
-    const myMedia = document.querySelectorAll(".photograph-body div article.work");
+    const myMediaz = document.querySelectorAll(".photograph-body div article.work");
     const container_medias = document.getElementById("container_medias");
+    
+    // if there's already a media, remove it
     let currentImageVideoElement = container_medias.querySelector("img, video");
     if (currentImageVideoElement) {
         currentImageVideoElement.remove();
     }
-    currentMedia = (currentMedia - 1 + myMedia.length) % myMedia.length;
-    myMedia[currentMedia].children[0].src = myMedia[currentMedia].children[0].getAttribute("src");
+    
+    // change the index of the media to go to the previous
+    currentMedia = (currentMedia - 1 + myMediaz.length) % myMediaz.length;
+    myMediaz[currentMedia].children[0].src = myMediaz[currentMedia].children[0].getAttribute("src");
+    
+    // looking for the title of the media
+    const fileName = myMediaz[currentMedia].children[1].children[0].textContent;
+    const title = document.querySelector("#container_medias .title_medias_lb");
+    title.textContent = fileName;
 
-    const srcArray = myMedia[currentMedia].children[0].src.split("/");
+    // looking for the extension of the media
+    const srcArray = myMediaz[currentMedia].children[0].src.split("/");
     const fileExtension = srcArray[srcArray.length - 1].split(".")[1];
     
     if(fileExtension === "jpg") {
         const img = document.createElement( 'img' );
-        img.setAttribute("src", myMedia[currentMedia].children[0].src);
+        img.setAttribute("src", myMediaz[currentMedia].children[0].src);
         container_medias.appendChild(img);
     } else {
         const video = document.createElement( 'video' );
-        video.setAttribute("src", myMedia[currentMedia].children[0].src);
+        video.setAttribute("src", myMediaz[currentMedia].children[0].src);
         video.setAttribute("controls", "");
         container_medias.appendChild(video);
     }
-
-    const fileName = myMedia[currentMedia].children[1].children[0].textContent;
-    const title = document.querySelector("#container_medias .title_medias_lb");
-    title.textContent = fileName;
-    });
 }
 
 function rightArrowScroll() {
-    let rightArrow = document.querySelector(".lightbox #right-arrow");
-    rightArrow.addEventListener("click", function() {
-    const myMedia = document.querySelectorAll(".photograph-body div article.work");
+    const myMediaz = document.querySelectorAll(".photograph-body div article.work");
     const container_medias = document.getElementById("container_medias");
+    
+    // if there's already a media, remove it
     let currentImageVideoElement = container_medias.querySelector("img, video");
     if (currentImageVideoElement) {
         currentImageVideoElement.remove();
     }
-    currentMedia = (currentMedia + 1) % myMedia.length;
-    myMedia[currentMedia].children[0].src = myMedia[currentMedia].children[0].getAttribute("src");
-
-    const srcArray = myMedia[currentMedia].children[0].src.split("/");
+    
+    // change the index of the media to go to the following
+    currentMedia = (currentMedia + 1) % myMediaz.length;
+    myMediaz[currentMedia].children[0].src = myMediaz[currentMedia].children[0].getAttribute("src");
+    
+    // looking for the title of the media
+    const fileName = myMediaz[currentMedia].children[1].children[0].textContent;
+    const title = document.querySelector("#container_medias .title_medias_lb");
+    title.textContent = fileName;
+    
+    // looking for the extension of the media
+    const srcArray = myMediaz[currentMedia].children[0].src.split("/");
     const fileExtension = srcArray[srcArray.length - 1].split(".")[1];
 
     if(fileExtension === "jpg") {
         const img = document.createElement( 'img' );
-        img.setAttribute("src", myMedia[currentMedia].children[0].src);
+        img.setAttribute("src", myMediaz[currentMedia].children[0].src);
         container_medias.appendChild(img);
     } else {
         const video = document.createElement( 'video' );
-        video.setAttribute("src", myMedia[currentMedia].children[0].src);
+        video.setAttribute("src", myMediaz[currentMedia].children[0].src);
         video.setAttribute("controls", "");
         container_medias.appendChild(video);
     }
-
-    const fileName = myMedia[currentMedia].children[1].children[0].textContent;
-    const title = document.querySelector("#container_medias .title_medias_lb");
-    title.textContent = fileName;
-    });
 }
 //---------------------------LIGHTBOX---------------------------//
