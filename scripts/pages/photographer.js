@@ -117,6 +117,7 @@ displayFixedDiv();
 
 function openLightbox() {
     const myMedia = document.querySelectorAll(".myMedias");
+    let currentIndex;
     for(let i = 0; i < myMedia.length; i ++) {
         if(myMedia[i].controls === true){
             myMedia[i].addEventListener('click', function() {
@@ -136,6 +137,9 @@ function openLightbox() {
                 const bodyMain = document.querySelector("body main");
                 bodyHeader.setAttribute("class", "modalBlur");
                 bodyMain.setAttribute("class", "modalBlur");
+                currentIndex = i / 2;
+                leftArrowScroll(currentIndex);
+                rightArrowScroll(currentIndex);
             })
         } else {
             myMedia[i].addEventListener('click', function() {
@@ -154,6 +158,9 @@ function openLightbox() {
                 const bodyMain = document.querySelector("body main");
                 bodyHeader.setAttribute("class", "modalBlur");
                 bodyMain.setAttribute("class", "modalBlur");
+                currentIndex = i / 2;
+                leftArrowScroll(currentIndex);
+                rightArrowScroll(currentIndex);
             })
         }
     }
@@ -171,21 +178,25 @@ function closeLightbox() {
     location.reload();
 }
 
-let currentMedia = 0;
-
-function leftArrowScroll() {
+function leftArrowScroll(currentIndex) {
     const myMediaz = document.querySelectorAll(".photograph-body div article.work");
     const container_medias = document.getElementById("container_medias");
+
+    if(currentIndex != undefined) {
+        currentMedia = currentIndex
+    } else {
+        currentMedia = myMediaz[currentMedia].children[1].children[2].textContent
+    };
+    
+    // change the index of the media to go to the previous
+    currentMedia = (currentMedia - 1 + myMediaz.length) % myMediaz.length;
+    myMediaz[currentMedia].children[0].src = myMediaz[currentMedia].children[0].getAttribute("src");
     
     // if there's already a media, remove it
     let currentImageVideoElement = container_medias.querySelector("img, video");
     if (currentImageVideoElement) {
         currentImageVideoElement.remove();
     }
-    
-    // change the index of the media to go to the previous
-    currentMedia = (currentMedia - 1 + myMediaz.length) % myMediaz.length;
-    myMediaz[currentMedia].children[0].src = myMediaz[currentMedia].children[0].getAttribute("src");
     
     // looking for the title of the media
     const fileName = myMediaz[currentMedia].children[1].children[0].textContent;
@@ -208,19 +219,25 @@ function leftArrowScroll() {
     }
 }
 
-function rightArrowScroll() {
+function rightArrowScroll(currentIndex) {
     const myMediaz = document.querySelectorAll(".photograph-body div article.work");
     const container_medias = document.getElementById("container_medias");
+
+    if(currentIndex != undefined) {
+        currentMedia = currentIndex
+    } else {
+        currentMedia = myMediaz[currentMedia].children[1].children[2].textContent
+    };
+
+    // change the index of the media to go to the following
+    currentMedia = (currentMedia + 1) % myMediaz.length;
+    myMediaz[currentMedia].children[0].src = myMediaz[currentMedia].children[0].getAttribute("src");
     
     // if there's already a media, remove it
     let currentImageVideoElement = container_medias.querySelector("img, video");
     if (currentImageVideoElement) {
         currentImageVideoElement.remove();
     }
-    
-    // change the index of the media to go to the following
-    currentMedia = (currentMedia + 1) % myMediaz.length;
-    myMediaz[currentMedia].children[0].src = myMediaz[currentMedia].children[0].getAttribute("src");
     
     // looking for the title of the media
     const fileName = myMediaz[currentMedia].children[1].children[0].textContent;
