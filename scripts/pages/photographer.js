@@ -171,45 +171,69 @@ async function leftArrowScroll() {
     let photographerMediaArray = await getMediaFromPhotographer();
     let nameOfPhotographArray = await getPersonnalInformationsPhotographer();
     let nameOfPhotograph = nameOfPhotographArray.name.split(" ")[0];
-    let titleCurrentMedia = document.querySelector("#container_medias img").id;
     const container_medias = document.getElementById("container_medias");
-
-    // if there's already a media, remove it
-    let currentImageVideoElement = container_medias.querySelector("img, video");
-    if (currentImageVideoElement) {
-        currentImageVideoElement.remove();
-    }
     
     for(let i = 0; i < photographerMediaArray.length; i ++) {
-        if(photographerMediaArray[i].image !== undefined) {
-            if(titleCurrentMedia === photographerMediaArray[i].image.split(".")[0]) {
+        if(photographerMediaArray[i].image !== undefined && document.querySelector("#container_medias img") !== null) {
+            if(document.querySelector("#container_medias img").id === photographerMediaArray[i].image.split(".")[0]) {
                 currentMedia = i;
+                // if there's already a media, remove it
+                let currentImageVideoElement = container_medias.querySelector("img, video");
+                if (currentImageVideoElement) {
+                    currentImageVideoElement.remove();
+                }
                 // change the index of the media to go to the previous
                 currentMedia = (currentMedia - 1 + photographerMediaArray.length) % photographerMediaArray.length;
-                // looking for the title of the media
-                const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
-                const title = document.querySelector("#container_medias .title_medias_lb");
-                title.textContent = fileName;
-                const img = document.createElement( 'img' );
-                img.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].image);
-                img.setAttribute("id", photographerMediaArray[i].image.split(".")[0]);
-                img.setAttribute("alt", photographerMediaArray[i].image.split(".")[0]);
-                container_medias.appendChild(img);
+                if(photographerMediaArray[currentMedia].image !== undefined) {
+                    // looking for the title of the media
+                    const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+                    const title = document.querySelector("#container_medias .title_medias_lb");
+                    title.textContent = fileName;
+                    const img = document.createElement( 'img' );
+                    img.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].image);
+                    img.setAttribute("id", photographerMediaArray[currentMedia].image.split(".")[0]);
+                    img.setAttribute("alt", photographerMediaArray[currentMedia].image.split(".")[0]);
+                    container_medias.appendChild(img);
+                } else {
+                    // looking for the title of the media
+                    const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+                    const title = document.querySelector("#container_medias .title_medias_lb");
+                    title.textContent = fileName;
+                    const video = document.createElement( 'video' );
+                    video.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].video);
+                    video.setAttribute("id", photographerMediaArray[currentMedia].video.split(".")[0]);
+                    video.setAttribute("alt", photographerMediaArray[currentMedia].video.split(".")[0]);
+                    container_medias.appendChild(video);
+                }
             }
         } else {
-            if(titleCurrentMedia === photographerMediaArray[i].video.split(".")[0]) {
-                currentMedia = i;
-                // change the index of the media to go to the previous
-                currentMedia = (currentMedia - 1 + photographerMediaArray.length) % photographerMediaArray.length;
-                // looking for the title of the media
-                const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
-                const title = document.querySelector("#container_medias .title_medias_lb");
-                title.textContent = fileName;
-                const video = document.createElement( 'video' );
-                video.setAttribute("src", photographerMediaArray[currentMedia].video);
-                video.setAttribute("controls", "");
-                video.setAttribute("id", photographerMediaArray[currentMedia].video.split(".")[0]);
-                container_medias.appendChild(video);
+            if(document.querySelector("#container_medias video") !== null && document.querySelector("#container_medias video") !== undefined){
+                if(document.querySelector("#container_medias video").id === photographerMediaArray[i].video.split(".")[0]) {
+                    currentMedia = i;
+                    // change the index of the media to go to the previous
+                    currentMedia = (currentMedia - 1 + photographerMediaArray.length) % photographerMediaArray.length;
+                    if(photographerMediaArray[currentMedia].image !== undefined) {
+                        // looking for the title of the media
+                        const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+                        const title = document.querySelector("#container_medias .title_medias_lb");
+                        title.textContent = fileName;
+                        const img = document.createElement( 'img' );
+                        img.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].image);
+                        img.setAttribute("id", photographerMediaArray[currentMedia].image.split(".")[0]);
+                        img.setAttribute("alt", photographerMediaArray[currentMedia].image.split(".")[0]);
+                        container_medias.appendChild(img);
+                    } else {
+                        // looking for the title of the media
+                        const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+                        const title = document.querySelector("#container_medias .title_medias_lb");
+                        title.textContent = fileName;
+                        const video = document.createElement( 'video' );
+                        video.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].video);
+                        video.setAttribute("id", photographerMediaArray[currentMedia].video.split(".")[0]);
+                        video.setAttribute("alt", photographerMediaArray[currentMedia].video.split(".")[0]);
+                        container_medias.appendChild(video);
+                    }
+                }
             }
         }
     }
@@ -219,45 +243,69 @@ async function rightArrowScroll() {
     let photographerMediaArray = await getMediaFromPhotographer();
     let nameOfPhotographArray = await getPersonnalInformationsPhotographer();
     let nameOfPhotograph = nameOfPhotographArray.name.split(" ")[0];
-    let titleCurrentMedia = document.querySelector("#container_medias img").id;
     const container_medias = document.getElementById("container_medias");
-
-    // if there's already a media, remove it
-    let currentImageVideoElement = container_medias.querySelector("img, video");
-    if (currentImageVideoElement) {
-        currentImageVideoElement.remove();
-    }
     
     for(let i = 0; i < photographerMediaArray.length; i ++) {
-        if(photographerMediaArray[i].image !== undefined) {
-            if(titleCurrentMedia === photographerMediaArray[i].image.split(".")[0]) {
+        if(photographerMediaArray[i].image !== undefined && document.querySelector("#container_medias img") !== null) {
+            if(document.querySelector("#container_medias img").id === photographerMediaArray[i].image.split(".")[0]) {
                 currentMedia = i;
+                // if there's already a media, remove it
+                let currentImageVideoElement = container_medias.querySelector("img, video");
+                if (currentImageVideoElement) {
+                    currentImageVideoElement.remove();
+                }
                 // change the index of the media to go to the previous
                 currentMedia = (currentMedia + 1) % photographerMediaArray.length;
-                // looking for the title of the media
-                const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
-                const title = document.querySelector("#container_medias .title_medias_lb");
-                title.textContent = fileName;
-                const img = document.createElement( 'img' );
-                img.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].image);
-                img.setAttribute("id", photographerMediaArray[i].image.split(".")[0]);
-                img.setAttribute("alt", photographerMediaArray[i].image.split(".")[0]);
-                container_medias.appendChild(img);
+                if(photographerMediaArray[currentMedia].image !== undefined) {
+                    // looking for the title of the media
+                    const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+                    const title = document.querySelector("#container_medias .title_medias_lb");
+                    title.textContent = fileName;
+                    const img = document.createElement( 'img' );
+                    img.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].image);
+                    img.setAttribute("id", photographerMediaArray[currentMedia].image.split(".")[0]);
+                    img.setAttribute("alt", photographerMediaArray[currentMedia].image.split(".")[0]);
+                    container_medias.appendChild(img);
+                } else {
+                    // looking for the title of the media
+                    const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+                    const title = document.querySelector("#container_medias .title_medias_lb");
+                    title.textContent = fileName;
+                    const video = document.createElement( 'video' );
+                    video.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].video);
+                    video.setAttribute("id", photographerMediaArray[currentMedia].video.split(".")[0]);
+                    video.setAttribute("alt", photographerMediaArray[currentMedia].video.split(".")[0]);
+                    container_medias.appendChild(video);
+                }
             }
         } else {
-            if(titleCurrentMedia === photographerMediaArray[i].video.split(".")[0]) {
-                currentMedia = i;
-                // change the index of the media to go to the previous
-                currentMedia = (currentMedia + 1) % photographerMediaArray.length;
-                // looking for the title of the media
-                const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
-                const title = document.querySelector("#container_medias .title_medias_lb");
-                title.textContent = fileName;
-                const video = document.createElement( 'video' );
-                video.setAttribute("src", photographerMediaArray[currentMedia].video);
-                video.setAttribute("controls", "");
-                video.setAttribute("id", photographerMediaArray[currentMedia].video.split(".")[0]);
-                container_medias.appendChild(video);
+            if(document.querySelector("#container_medias video") !== null && document.querySelector("#container_medias video") !== undefined) {
+                if(document.querySelector("#container_medias video").id === photographerMediaArray[i].video.split(".")[0]) {
+                    currentMedia = i;
+                    // change the index of the media to go to the previous
+                    currentMedia = (currentMedia + 1) % photographerMediaArray.length;
+                    if(photographerMediaArray[currentMedia].image !== undefined) {
+                        // looking for the title of the media
+                        const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+                        const title = document.querySelector("#container_medias .title_medias_lb");
+                        title.textContent = fileName;
+                        const img = document.createElement( 'img' );
+                        img.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].image);
+                        img.setAttribute("id", photographerMediaArray[currentMedia].image.split(".")[0]);
+                        img.setAttribute("alt", photographerMediaArray[currentMedia].image.split(".")[0]);
+                        container_medias.appendChild(img);
+                    } else {
+                        // looking for the title of the media
+                        const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+                        const title = document.querySelector("#container_medias .title_medias_lb");
+                        title.textContent = fileName;
+                        const video = document.createElement( 'video' );
+                        video.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].video);
+                        video.setAttribute("id", photographerMediaArray[currentMedia].video.split(".")[0]);
+                        video.setAttribute("alt", photographerMediaArray[currentMedia].video.split(".")[0]);
+                        container_medias.appendChild(video);
+                    }
+                }
             }
         }
     }
