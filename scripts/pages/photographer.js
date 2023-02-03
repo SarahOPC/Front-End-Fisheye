@@ -117,53 +117,42 @@ displayFixedDiv();
 
 function openLightbox() {
     const myMedia = document.querySelectorAll(".myMedias");
-    let currentIndex;
-    for(let i = 0; i < myMedia.length; i ++) {
-        if(myMedia[i].controls === true){
-            myMedia[i].addEventListener('click', function() {
-                const myNewMedia = document.createElement( 'video' );
-                myNewMedia.src = myMedia[i].src;
-                myNewMedia.setAttribute("type", "video/mp4");
-                myNewMedia.setAttribute("controls", "");
-                let titleArray = myNewMedia.src.split("/");
-                let titleAndExtension = titleArray[titleArray.length - 1];
-                let title = titleAndExtension.split(".")[0];
-                myNewMedia.setAttribute("id", title);
-                const container_medias = document.getElementById("container_medias");
-                container_medias.appendChild(myNewMedia);
-                const lightbox = document.getElementById("myLightbox");
-                lightbox.style.display = "block";
-                const bodyHeader = document.querySelector("body header");
-                const bodyMain = document.querySelector("body main");
-                bodyHeader.setAttribute("class", "modalBlur");
-                bodyMain.setAttribute("class", "modalBlur");
-                currentIndex = i / 2;
-                leftArrowScroll(currentIndex);
-                rightArrowScroll(currentIndex);
-            })
+    myMedia.forEach(media => media.addEventListener('click', function() {
+        if (media.controls === true) {
+            const myNewMedia = document.createElement( 'video' );
+            myNewMedia.src = media.src;
+            myNewMedia.setAttribute("type", "video/mp4");
+            myNewMedia.setAttribute("controls", "");
+            let titleArray = myNewMedia.src.split("/");
+            let titleAndExtension = titleArray[titleArray.length - 1];
+            let title = titleAndExtension.split(".")[0];
+            myNewMedia.setAttribute("id", title);
+            const container_medias = document.getElementById("container_medias");
+            container_medias.appendChild(myNewMedia);
+            const lightbox = document.getElementById("myLightbox");
+            lightbox.style.display = "block";
+            const bodyHeader = document.querySelector("body header");
+            const bodyMain = document.querySelector("body main");
+            bodyHeader.setAttribute("class", "modalBlur");
+            bodyMain.setAttribute("class", "modalBlur");
         } else {
-            myMedia[i].addEventListener('click', function() {
-                const myNewMedia = document.createElement( 'img' );
-                myNewMedia.src = myMedia[i].src;
-                let titleArray = myNewMedia.src.split("/");
-                let titleAndExtension = titleArray[titleArray.length - 1];
-                let title = titleAndExtension.split(".")[0];
-                myNewMedia.setAttribute("id", title);
-                myNewMedia.setAttribute("alt", title);
-                const container_medias = document.getElementById("container_medias");
-                container_medias.appendChild(myNewMedia);
-                const lightbox = document.getElementById("myLightbox");
-                lightbox.style.display = "block";
-                const bodyHeader = document.querySelector("body header");
-                const bodyMain = document.querySelector("body main");
-                bodyHeader.setAttribute("class", "modalBlur");
-                bodyMain.setAttribute("class", "modalBlur");
-                currentIndex = i / 2;
-                leftArrowScroll(currentIndex);
-                rightArrowScroll(currentIndex);
-            })
+            const myNewMedia = document.createElement( 'img' );
+            myNewMedia.src = media.src;
+            let titleArray = myNewMedia.src.split("/");
+            let titleAndExtension = titleArray[titleArray.length - 1];
+            let title = titleAndExtension.split(".")[0];
+            myNewMedia.setAttribute("id", title);
+            myNewMedia.setAttribute("alt", title);
+            const container_medias = document.getElementById("container_medias");
+            container_medias.appendChild(myNewMedia);
+            const lightbox = document.getElementById("myLightbox");
+            lightbox.style.display = "block";
+            const bodyHeader = document.querySelector("body header");
+            const bodyMain = document.querySelector("body main");
+            bodyHeader.setAttribute("class", "modalBlur");
+            bodyMain.setAttribute("class", "modalBlur");
         }
-    }
+    }))
 }
 
 function closeLightbox() {
@@ -178,85 +167,99 @@ function closeLightbox() {
     location.reload();
 }
 
-function leftArrowScroll(currentIndex) {
-    const myMediaz = document.querySelectorAll(".photograph-body div article.work");
+async function leftArrowScroll() {
+    let photographerMediaArray = await getMediaFromPhotographer();
+    let nameOfPhotographArray = await getPersonnalInformationsPhotographer();
+    let nameOfPhotograph = nameOfPhotographArray.name.split(" ")[0];
+    let titleCurrentMedia = document.querySelector("#container_medias img").id;
     const container_medias = document.getElementById("container_medias");
 
-    if(currentIndex != undefined) {
-        currentMedia = currentIndex
-    } else {
-        currentMedia = myMediaz[currentMedia].children[1].children[2].textContent
-    };
-    
-    // change the index of the media to go to the previous
-    currentMedia = (currentMedia - 1 + myMediaz.length) % myMediaz.length;
-    myMediaz[currentMedia].children[0].src = myMediaz[currentMedia].children[0].getAttribute("src");
-    
     // if there's already a media, remove it
     let currentImageVideoElement = container_medias.querySelector("img, video");
     if (currentImageVideoElement) {
         currentImageVideoElement.remove();
     }
     
-    // looking for the title of the media
-    const fileName = myMediaz[currentMedia].children[1].children[0].textContent;
-    const title = document.querySelector("#container_medias .title_medias_lb");
-    title.textContent = fileName;
-
-    // looking for the extension of the media
-    const srcArray = myMediaz[currentMedia].children[0].src.split("/");
-    const fileExtension = srcArray[srcArray.length - 1].split(".")[1];
-    
-    if(fileExtension === "jpg") {
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", myMediaz[currentMedia].children[0].src);
-        container_medias.appendChild(img);
-    } else {
-        const video = document.createElement( 'video' );
-        video.setAttribute("src", myMediaz[currentMedia].children[0].src);
-        video.setAttribute("controls", "");
-        container_medias.appendChild(video);
+    for(let i = 0; i < photographerMediaArray.length; i ++) {
+        if(photographerMediaArray[i].image !== undefined) {
+            if(titleCurrentMedia === photographerMediaArray[i].image.split(".")[0]) {
+                currentMedia = i;
+                // change the index of the media to go to the previous
+                currentMedia = (currentMedia - 1 + photographerMediaArray.length) % photographerMediaArray.length;
+                // looking for the title of the media
+                const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+                const title = document.querySelector("#container_medias .title_medias_lb");
+                title.textContent = fileName;
+                const img = document.createElement( 'img' );
+                img.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].image);
+                img.setAttribute("id", photographerMediaArray[i].image.split(".")[0]);
+                img.setAttribute("alt", photographerMediaArray[i].image.split(".")[0]);
+                container_medias.appendChild(img);
+            }
+        } else {
+            if(titleCurrentMedia === photographerMediaArray[i].video.split(".")[0]) {
+                currentMedia = i;
+                // change the index of the media to go to the previous
+                currentMedia = (currentMedia - 1 + photographerMediaArray.length) % photographerMediaArray.length;
+                // looking for the title of the media
+                const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+                const title = document.querySelector("#container_medias .title_medias_lb");
+                title.textContent = fileName;
+                const video = document.createElement( 'video' );
+                video.setAttribute("src", photographerMediaArray[currentMedia].video);
+                video.setAttribute("controls", "");
+                video.setAttribute("id", photographerMediaArray[currentMedia].video.split(".")[0]);
+                container_medias.appendChild(video);
+            }
+        }
     }
 }
 
-function rightArrowScroll(currentIndex) {
-    const myMediaz = document.querySelectorAll(".photograph-body div article.work");
+async function rightArrowScroll() {
+    let photographerMediaArray = await getMediaFromPhotographer();
+    let nameOfPhotographArray = await getPersonnalInformationsPhotographer();
+    let nameOfPhotograph = nameOfPhotographArray.name.split(" ")[0];
+    let titleCurrentMedia = document.querySelector("#container_medias img").id;
     const container_medias = document.getElementById("container_medias");
 
-    if(currentIndex != undefined) {
-        currentMedia = currentIndex
-    } else {
-        currentMedia = myMediaz[currentMedia].children[1].children[2].textContent
-    };
-
-    // change the index of the media to go to the following
-    currentMedia = (currentMedia + 1) % myMediaz.length;
-    myMediaz[currentMedia].children[0].src = myMediaz[currentMedia].children[0].getAttribute("src");
-    
     // if there's already a media, remove it
     let currentImageVideoElement = container_medias.querySelector("img, video");
     if (currentImageVideoElement) {
         currentImageVideoElement.remove();
     }
     
-    // looking for the title of the media
-    const fileName = myMediaz[currentMedia].children[1].children[0].textContent;
-    const title = document.querySelector("#container_medias .title_medias_lb");
-    title.textContent = fileName;
-    
-    // looking for the extension of the media
-    const srcArray = myMediaz[currentMedia].children[0].src.split("/");
-    const fileExtension = srcArray[srcArray.length - 1].split(".")[1];
-
-    if(fileExtension === "jpg") {
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", myMediaz[currentMedia].children[0].src);
-        container_medias.appendChild(img);
-    } else {
-        const video = document.createElement( 'video' );
-        video.setAttribute("src", myMediaz[currentMedia].children[0].src);
-        video.setAttribute("controls", "");
-        container_medias.appendChild(video);
+    for(let i = 0; i < photographerMediaArray.length; i ++) {
+        if(photographerMediaArray[i].image !== undefined) {
+            if(titleCurrentMedia === photographerMediaArray[i].image.split(".")[0]) {
+                currentMedia = i;
+                // change the index of the media to go to the previous
+                currentMedia = (currentMedia + 1) % photographerMediaArray.length;
+                // looking for the title of the media
+                const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+                const title = document.querySelector("#container_medias .title_medias_lb");
+                title.textContent = fileName;
+                const img = document.createElement( 'img' );
+                img.setAttribute("src", "./assets/images/" + nameOfPhotograph + "/" + photographerMediaArray[currentMedia].image);
+                img.setAttribute("id", photographerMediaArray[i].image.split(".")[0]);
+                img.setAttribute("alt", photographerMediaArray[i].image.split(".")[0]);
+                container_medias.appendChild(img);
+            }
+        } else {
+            if(titleCurrentMedia === photographerMediaArray[i].video.split(".")[0]) {
+                currentMedia = i;
+                // change the index of the media to go to the previous
+                currentMedia = (currentMedia + 1) % photographerMediaArray.length;
+                // looking for the title of the media
+                const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+                const title = document.querySelector("#container_medias .title_medias_lb");
+                title.textContent = fileName;
+                const video = document.createElement( 'video' );
+                video.setAttribute("src", photographerMediaArray[currentMedia].video);
+                video.setAttribute("controls", "");
+                video.setAttribute("id", photographerMediaArray[currentMedia].video.split(".")[0]);
+                container_medias.appendChild(video);
+            }
+        }
     }
 }
 //---------------------------LIGHTBOX---------------------------//

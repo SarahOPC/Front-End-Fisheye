@@ -17,9 +17,6 @@ function mediaFactory(data) {
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
                 const pLikes = document.createElement( 'p' );
-                const pIndex = document.createElement( 'p' );
-                pIndex.textContent = i;
-                pIndex.setAttribute("class", "index");
                 pTitle.textContent = data[i].title;
                 pTitle.setAttribute("class", "myMedias");
                 pLikes.textContent = data[i].likes;
@@ -28,7 +25,6 @@ function mediaFactory(data) {
                 pLikes.appendChild(heart);
                 infos.appendChild(pTitle);
                 infos.appendChild(pLikes);
-                infos.appendChild(pIndex);
                 const article = document.createElement( 'article' );
                 article.setAttribute("class", "work");
                 article.appendChild(videos);
@@ -45,9 +41,6 @@ function mediaFactory(data) {
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
                 const pLikes = document.createElement( 'p' );
-                const pIndex = document.createElement( 'p' );
-                pIndex.textContent = i;
-                pIndex.setAttribute("class", "index");
                 pTitle.textContent = data[i].title;
                 pTitle.setAttribute("class", "myMedias");
                 pLikes.textContent = data[i].likes;
@@ -56,7 +49,6 @@ function mediaFactory(data) {
                 pLikes.appendChild(heart);
                 infos.appendChild(pTitle);
                 infos.appendChild(pLikes);
-                infos.appendChild(pIndex);
                 const article = document.createElement( 'article' );
                 article.setAttribute("class", "work");
                 article.appendChild(img);
