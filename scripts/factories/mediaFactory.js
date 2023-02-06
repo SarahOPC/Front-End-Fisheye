@@ -22,6 +22,7 @@ function mediaFactory(data) {
                 pLikes.textContent = data[i].likes;
                 const heart = document.createElement( 'i' );
                 heart.setAttribute("class", "fa fa-heart");
+                heart.setAttribute("onclick", "addToLike()");
                 pLikes.appendChild(heart);
                 infos.appendChild(pTitle);
                 infos.appendChild(pLikes);
@@ -46,6 +47,7 @@ function mediaFactory(data) {
                 pLikes.textContent = data[i].likes;
                 const heart = document.createElement( 'i' );
                 heart.setAttribute("class", "fa fa-heart");
+                heart.setAttribute("onclick", "addToLike()");
                 pLikes.appendChild(heart);
                 infos.appendChild(pTitle);
                 infos.appendChild(pLikes);
