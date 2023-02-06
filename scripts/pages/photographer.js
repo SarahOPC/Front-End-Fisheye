@@ -355,6 +355,9 @@ async function addToLike() {
                     let addedLike = parseInt(1);
                     let newLikes = alreadyLike + addedLike;
                     parent.querySelector(".infos").children[1].textContent = newLikes;
+                    const heart = document.createElement( 'i' );
+                    heart.setAttribute("class", "fa fa-heart");
+                    parent.querySelector(".infos").children[1].appendChild(heart);
                     break;
                 }
             }
@@ -367,6 +370,9 @@ async function addToLike() {
                     let addedLike = parseInt(1);
                     let newLikes = alreadyLike + addedLike;
                     parent.querySelector(".infos").children[1].textContent = newLikes;
+                    const heart = document.createElement( 'i' );
+                    heart.setAttribute("class", "fa fa-heart");
+                    parent.querySelector(".infos").children[1].appendChild(heart);
                     break;
                 }
             }
