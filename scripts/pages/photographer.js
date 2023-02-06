@@ -358,6 +358,7 @@ async function addToLike() {
                     const heart = document.createElement( 'i' );
                     heart.setAttribute("class", "fa fa-heart");
                     parent.querySelector(".infos").children[1].appendChild(heart);
+                    displayFixedDiv();
                     break;
                 }
             }
@@ -373,6 +374,7 @@ async function addToLike() {
                     const heart = document.createElement( 'i' );
                     heart.setAttribute("class", "fa fa-heart");
                     parent.querySelector(".infos").children[1].appendChild(heart);
+                    displayFixedDiv();
                     break;
                 }
             }
