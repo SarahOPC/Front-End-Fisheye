@@ -342,7 +342,7 @@ async function addToLike() {
     const medias = await getMediaFromPhotographer();
     let heartForLike = document.querySelectorAll("article.work .infos i");
     heartForLike.forEach(heart => heart.addEventListener("click", function() {
-        // to not use the same query selector
+        // parent = to not use the same query selector
         let parent = this.closest("article.work");
         let imageLiked = parent.querySelector("img");
         let videoLiked = parent.querySelector("video");
@@ -358,7 +358,12 @@ async function addToLike() {
                     const heart = document.createElement( 'i' );
                     heart.setAttribute("class", "fa fa-heart");
                     parent.querySelector(".infos").children[1].appendChild(heart);
-                    displayFixedDiv();
+                    const totalHeart = document.createElement( 'i' );
+                    totalHeart.setAttribute("class", "fa fa-heart");
+                    let actualTotalLike = document.querySelector(".photograph-body .fixedDiv p").textContent;
+                    let newTotalLike = parseInt(actualTotalLike) + 1;
+                    document.querySelector(".photograph-body .fixedDiv p").textContent = newTotalLike;
+                    document.querySelector(".photograph-body .fixedDiv p").appendChild(totalHeart);
                     break;
                 }
             }
@@ -374,7 +379,12 @@ async function addToLike() {
                     const heart = document.createElement( 'i' );
                     heart.setAttribute("class", "fa fa-heart");
                     parent.querySelector(".infos").children[1].appendChild(heart);
-                    displayFixedDiv();
+                    const totalHeart = document.createElement( 'i' );
+                    totalHeart.setAttribute("class", "fa fa-heart");
+                    let actualTotalLike = document.querySelector(".photograph-body .fixedDiv p").textContent;
+                    let newTotalLike = parseInt(actualTotalLike) + 1;
+                    document.querySelector(".photograph-body .fixedDiv p").textContent = newTotalLike;
+                    document.querySelector(".photograph-body .fixedDiv p").appendChild(totalHeart);
                     break;
                 }
             }
