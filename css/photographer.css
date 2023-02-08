@@ -296,3 +296,13 @@ h6 {
 }
 
 /*---------------------------LIGHTBOX------------------------------*/
+
+article.work .infos p i.fa.thumbs-up::before {
+    /* Unicode in Fontawesome 5 */
+    content: "\f164";
+}
+
+article.work .infos p i.fa.thumbs-down::before {
+    /* Unicode in Fontawesome 5 */
+    content: "\f165";
+}

@@ -340,10 +340,14 @@ async function rightArrowScroll() {
 
 async function addToLike() {
     const medias = await getMediaFromPhotographer();
-    let heartForLike = document.querySelectorAll("article.work .infos i");
+    let heartForLike = document.querySelectorAll("article.work .infos p");
     heartForLike.forEach(heart => heart.addEventListener("click", function() {
         // parent = to not use the same query selector
         let parent = this.closest("article.work");
+        if (!parent) {
+            console.error('Parent element not found');
+            return;
+        }
         let imageLiked = parent.querySelector("img");
         let videoLiked = parent.querySelector("video");
         if(imageLiked != null) {
@@ -370,21 +374,40 @@ async function addToLike() {
 
 function changeDomLike(parent) {
     let alreadyLike = parseInt(parent.querySelector(".infos").children[1].textContent);
-    let addedLike = parseInt(1);
-    let newLikes = alreadyLike + addedLike;
-    parent.querySelector(".infos").children[1].textContent = newLikes;
-    const heart = document.createElement( 'i' );
-    heart.setAttribute("class", "fa fa-heart");
-    heart.removeAttribute("onclick");
-    parent.querySelector(".infos").children[1].appendChild(heart);
-    const totalHeart = document.createElement( 'i' );
-    totalHeart.setAttribute("class", "fa fa-heart");
-    let actualTotalLike = document.querySelector(".photograph-body .fixedDiv p").textContent;
-    let newTotalLike = parseInt(actualTotalLike) + 1;
-    document.querySelector(".photograph-body .fixedDiv p").textContent = newTotalLike;
-    document.querySelector(".photograph-body .fixedDiv p").appendChild(totalHeart);
+    let likeHeart = parent.querySelector(".infos i.fa-thumbs-up");
+    let dislikeHeart = parent.querySelector(".infos i.fa-thumbs-down");
+    
+    if (!likeHeart) {
+        // like
+        let addedLike = parseInt(1);
+        let newLikes = alreadyLike + addedLike;
+        parent.querySelector(".infos").children[1].textContent = newLikes;
+        likeHeart = document.createElement( 'i' );
+        likeHeart.setAttribute("class", "fa fa-thumbs-up");
+        parent.querySelector(".infos").children[1].appendChild(likeHeart);
+        const totalHeart = document.createElement( 'i' );
+        totalHeart.setAttribute("class", "fa fa-heart");
+        let actualTotalLike = document.querySelector(".photograph-body .fixedDiv p").textContent;
+        let newTotalLike = parseInt(actualTotalLike) + 1;
+        document.querySelector(".photograph-body .fixedDiv p").textContent = newTotalLike;
+        document.querySelector(".photograph-body .fixedDiv p").appendChild(totalHeart);
+    } else {
+        // dislike
+        let removedLike = parseInt(1);
+        let newLikes = alreadyLike - removedLike;
+        parent.querySelector(".infos").children[1].textContent = newLikes;
+        likeHeart.remove();
+        dislikeHeart = document.createElement('i');
+        dislikeHeart.setAttribute("class", "fa fa-thumbs-down");
+        parent.querySelector(".infos").children[1].appendChild(dislikeHeart);
+        const totalHeart = document.createElement( 'i' );
+        totalHeart.setAttribute("class", "fa fa-heart");
+        let actualTotalLike = document.querySelector(".photograph-body .fixedDiv p").textContent;
+        let newTotalLike = parseInt(actualTotalLike) - 1;
+        document.querySelector(".photograph-body .fixedDiv p").textContent = newTotalLike;
+        document.querySelector(".photograph-body .fixedDiv p").appendChild(totalHeart);
+    }
 }
-
 //-----------------------------------------------------------------
 //<i class="fa-sharp fa-solid fa-chevron-up"></i>
 //<i class="fa-sharp fa-solid fa-chevron-down"></i>
