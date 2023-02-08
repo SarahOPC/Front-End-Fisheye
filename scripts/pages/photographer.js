@@ -377,7 +377,7 @@ function changeDomLike(parent) {
     let likeHeart = parent.querySelector(".infos i.fa-thumbs-up");
     let dislikeHeart = parent.querySelector(".infos i.fa-thumbs-down");
     
-    if (!likeHeart) {
+    if (likeHeart == null || dislikeHeart) {
         // like
         let addedLike = parseInt(1);
         let newLikes = alreadyLike + addedLike;
