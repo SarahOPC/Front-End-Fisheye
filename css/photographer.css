@@ -306,3 +306,39 @@ article.work .infos p i.fa.thumbs-down::before {
     /* Unicode in Fontawesome 5 */
     content: "\f165";
 }
+
+.sorting {
+    font-weight: 600;
+}
+
+.sorting .sort {
+    margin-left: 5.7em;
+}
+
+.sorting .sort .sortItems {
+    background-color: #901C1C;
+    display: inline-table;
+    color: #FFFFFF;
+    margin: 0.7em;
+    padding: 0.3em 1.5em;
+    border-radius: 0.4em;
+}
+
+.sorting .sort .sortItems .date {
+    border-style: solid none;
+    border-width: 0.1em;
+    border-color: white;
+}
+
+.sorting .sort .sortItems div {
+    display: flex;
+    align-items: center;
+}
+
+.sorting .sort .sortItems div .popularity, .sorting .sort .sortItems .date, .sorting .sort .sortItems .title {
+    padding: 1em;
+}
+
+.sorting .sort .sortItems .date, .sorting .sort .sortItems .title {
+    visibility: hidden;
+}

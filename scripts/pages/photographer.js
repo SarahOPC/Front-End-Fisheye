@@ -413,7 +413,25 @@ function changeDomLike(parent) {
         return;
     }
 }
+
+//---------------------------TRI---------------------------
+function openMenu() {
+    const divDate = document.createElement( 'div' );
+    divDate.setAttribute("class", "date");
+    divDate.textContent = "Date";
+    const divTitle = document.createElement( 'div' );
+    divTitle.setAttribute("class", "title");
+    divTitle.textContent = "Titre";
+    const divContent = document.createElement( 'div' );
+    divContent.appendChild(divDate);
+    divContent.appendChild(divTitle);
+    let appendDiv = document.querySelector(".sortItems");
+    appendDiv.appendChild(divContent);
+}
+
+//---------------------------TRI---------------------------
+
 //-----------------------------------------------------------------
-//<i class="fa-sharp fa-solid fa-chevron-up"></i>
-//<i class="fa-sharp fa-solid fa-chevron-down"></i>
+//<i class="fa fa-chevron-up"></i>
+//<i class="fa fa-chevron-down"></i>
 //-----------------------------------------------------------------
