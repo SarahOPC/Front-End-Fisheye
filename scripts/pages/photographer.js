@@ -76,7 +76,9 @@ async function displayMedia() {
     mediaSection.appendChild(getmediaDOM);
 };
 
-displayMedia();
+displayMedia().then(()=>{
+    addToLike();
+});
 
 async function getTotalLikes() {
     const medias = await getMediaFromPhotographer();
@@ -197,7 +199,7 @@ async function leftArrowScroll() {
             currentMedia = (currentMedia - 1 + photographerMediaArray.length) % photographerMediaArray.length;
             if(photographerMediaArray[currentMedia].image !== undefined) {
                 // looking for the title of the new media if image
-                const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+                const fileName = photographerMediaArray[currentMedia].title;
                 const title = document.querySelector("#container_medias .title_medias_lb");
                 title.textContent = fileName;
                 const img = document.createElement( 'img' );
@@ -207,7 +209,7 @@ async function leftArrowScroll() {
                 container_medias.appendChild(img);
             } else {
                 // looking for the title of the new media if video
-                const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+                const fileName = photographerMediaArray[currentMedia].title;
                 const title = document.querySelector("#container_medias .title_medias_lb");
                 title.textContent = fileName;
                 const video = document.createElement( 'video' );
@@ -229,7 +231,7 @@ async function leftArrowScroll() {
         currentMedia = (currentMedia - 1 + photographerMediaArray.length) % photographerMediaArray.length;
         if(photographerMediaArray[currentMedia].image !== undefined) {
             // looking for the title of the new media if image
-            const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+            const fileName = photographerMediaArray[currentMedia].title;
             const title = document.querySelector("#container_medias .title_medias_lb");
             title.textContent = fileName;
             const img = document.createElement( 'img' );
@@ -239,7 +241,7 @@ async function leftArrowScroll() {
             container_medias.appendChild(img);
         } else {
             // looking for the title of the new media if video
-            const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+            const fileName = photographerMediaArray[currentMedia].title;
             const title = document.querySelector("#container_medias .title_medias_lb");
             title.textContent = fileName;
             const video = document.createElement( 'video' );
@@ -282,7 +284,7 @@ async function rightArrowScroll() {
             currentMedia = (currentMedia + 1) % photographerMediaArray.length;
             if(photographerMediaArray[currentMedia].image !== undefined) {
                 // looking for the title of the new media if image
-                const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+                const fileName = photographerMediaArray[currentMedia].title;
                 const title = document.querySelector("#container_medias .title_medias_lb");
                 title.textContent = fileName;
                 const img = document.createElement( 'img' );
@@ -292,7 +294,7 @@ async function rightArrowScroll() {
                 container_medias.appendChild(img);
             } else {
                 // looking for the title of the new media if video
-                const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+                const fileName = photographerMediaArray[currentMedia].title;
                 const title = document.querySelector("#container_medias .title_medias_lb");
                 title.textContent = fileName;
                 const video = document.createElement( 'video' );
@@ -314,7 +316,7 @@ async function rightArrowScroll() {
         currentMedia = (currentMedia + 1) % photographerMediaArray.length;
         if(photographerMediaArray[currentMedia].image !== undefined) {
             // looking for the title of the new media if image
-            const fileName = photographerMediaArray[currentMedia].image.split(".")[0];
+            const fileName = photographerMediaArray[currentMedia].title;
             const title = document.querySelector("#container_medias .title_medias_lb");
             title.textContent = fileName;
             const img = document.createElement( 'img' );
@@ -324,7 +326,7 @@ async function rightArrowScroll() {
             container_medias.appendChild(img);
         } else {
             // looking for the title of the new media if video
-            const fileName = photographerMediaArray[currentMedia].video.split(".")[0];
+            const fileName = photographerMediaArray[currentMedia].title;
             const title = document.querySelector("#container_medias .title_medias_lb");
             title.textContent = fileName;
             const video = document.createElement( 'video' );
@@ -343,6 +345,7 @@ async function addToLike() {
     let heartForLike = document.querySelectorAll("article.work .infos p");
     heartForLike.forEach(heart => heart.addEventListener("click", function() {
         // parent = to not use the same query selector
+        // this = for the element clicked
         let parent = this.closest("article.work");
         if (!parent) {
             console.error('Parent element not found');
@@ -368,7 +371,7 @@ async function addToLike() {
                     break;
                 }
             }
-        }
+        } return;
     }));
 }
 
@@ -391,6 +394,7 @@ function changeDomLike(parent) {
         let newTotalLike = parseInt(actualTotalLike) + 1;
         document.querySelector(".photograph-body .fixedDiv p").textContent = newTotalLike;
         document.querySelector(".photograph-body .fixedDiv p").appendChild(totalHeart);
+        return;
     } else {
         // dislike
         let removedLike = parseInt(1);
@@ -406,6 +410,7 @@ function changeDomLike(parent) {
         let newTotalLike = parseInt(actualTotalLike) - 1;
         document.querySelector(".photograph-body .fixedDiv p").textContent = newTotalLike;
         document.querySelector(".photograph-body .fixedDiv p").appendChild(totalHeart);
+        return;
     }
 }
 //-----------------------------------------------------------------
