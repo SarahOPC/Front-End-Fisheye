@@ -50,7 +50,8 @@ async function getMediaFromPhotographer() {
                     image: photographerMedias.media[i].image,
                     alt: photographerMedias.media[i].title,
                     title: photographerMedias.media[i].title,
-                    likes: photographerMedias.media[i].likes
+                    likes: photographerMedias.media[i].likes,
+                    date: photographerMedias.media[i].date
                 }
                 medias.push(media);
             };
@@ -59,7 +60,8 @@ async function getMediaFromPhotographer() {
                 {
                     video: photographerMedias.media[i].video,
                     title: photographerMedias.media[i].title,
-                    likes: photographerMedias.media[i].likes
+                    likes: photographerMedias.media[i].likes,
+                    date: photographerMedias.media[i].date
                 }
                 medias.push(media);
             }
@@ -428,19 +430,20 @@ function changeDomLike(parent) {
 function openMenu() {
     const divDate = document.createElement( 'div' );
     divDate.setAttribute("class", "date");
+    divDate.setAttribute("onclick", "displayMediaByDate()");
     divDate.textContent = "Date";
     const divTitle = document.createElement( 'div' );
     divTitle.setAttribute("class", "title");
+    divTitle.setAttribute("onclick", "displayMediaByTitle()");
     divTitle.textContent = "Titre";
     let appendDiv = document.querySelector(".sortItems");
     appendDiv.appendChild(divDate);
     appendDiv.appendChild(divTitle);
-    const i = document.createElement( 'i' );
-    i.setAttribute("class", "fa fa-chevron-up");
-    i.setAttribute("onclick", "closeMenu()");
-    const replaceI = document.querySelector(".fa.fa-chevron-down");
-    replaceI.removeAttribute("class");
-    replaceI.appendChild(i);
+    const replacedI = document.querySelector(".fa.fa-chevron-down");
+    replacedI.removeAttribute("class");
+    replacedI.setAttribute("class", "fa fa-chevron-up");
+    replacedI.setAttribute("onclick", "closeMenu()");
+    return;
 }
 
 function closeMenu() {
@@ -451,9 +454,64 @@ function closeMenu() {
     let firstRemovedElement = parentDiv.removeChild(divDate);
     let secondRemovedElement = parentDiv.removeChild(divTitle);
     i.removeAttribute("class");
-    const newI = document.createElement( 'i' );
-    newI.setAttribute("class", "fa fa-chevron-down");
-    i.appendChild(newI);
+    i.setAttribute("class", "fa fa-chevron-down");
+    i.setAttribute("onclick", "openMenu()");
+    return;
+}
+
+async function displayMediaByPopularity() {
+    const medias = await getMediaFromPhotographer();
+    console.log(medias);
+    medias.sort((a, b) => {
+        return b.likes - a.likes;
+    })
+    console.log(medias);
+    const main = document.querySelector("main");
+    const mediaSection = document.querySelector(".photograph-body");
+    main.removeChild(mediaSection);
+    const mediaModel = mediaFactory(medias);
+    const getmediaDOM = mediaModel.getmediaDOM();
+    mediaSection.appendChild(getmediaDOM);
+}
+
+async function displayMediaByDate() {
+    const medias = await getMediaFromPhotographer();
+    console.log(medias);
+    medias.sort((a, b) => {
+        return b.date - a.date;
+    })
+    console.log(medias);
+    const main = document.querySelector("main");
+    const mediaSection = document.querySelector(".photograph-body");
+    main.removeChild(mediaSection);
+    const mediaModel = mediaFactory(medias);
+    const getmediaDOM = mediaModel.getmediaDOM();
+    mediaSection.appendChild(getmediaDOM);
+}
+
+async function displayMediaByTitle() {
+    const medias = await getMediaFromPhotographer();
+    console.log(medias);
+    medias.sort((a, b) => {
+        const titleA = a.title.toUpperCase(); // ignore upper and lowercase
+        const titleB = b.title.toUpperCase(); // ignore upper and lowercase
+        if (titleA < titleB) {
+            return -1;
+        }
+        if (titleA > titleB) {
+            return 1;
+        }
+        if (titleA = titleB) {
+            return 0;
+        }
+    })
+    console.log(medias);
+    const main = document.querySelector("main");
+    const mediaSection = document.querySelector(".photograph-body");
+    main.removeChild(mediaSection);
+    const mediaModel = mediaFactory(medias);
+    const getmediaDOM = mediaModel.getmediaDOM();
+    mediaSection.appendChild(getmediaDOM);
 }
 
 //---------------------------SORTING---------------------------//
