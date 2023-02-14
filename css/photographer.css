@@ -338,7 +338,3 @@ article.work .infos p i.fa.thumbs-down::before {
 .sorting .sort .sortItems div .popularity, .sorting .sort .sortItems .date, .sorting .sort .sortItems .title {
     padding: 1em;
 }
-
-.sorting .sort .sortItems .date, .sorting .sort .sortItems .title {
-    visibility: hidden;
-}

@@ -80,6 +80,8 @@ displayMedia().then(()=>{
     addToLike();
 });
 
+//---------------------------FIXEDDIV---------------------------//
+
 async function getTotalLikes() {
     const medias = await getMediaFromPhotographer();
     let totalLikes = 0;
@@ -114,6 +116,8 @@ async function displayFixedDiv() {
 }
 
 displayFixedDiv();
+
+//---------------------------FIXEDDIV---------------------------//
 
 //---------------------------LIGHTBOX---------------------------//
 
@@ -338,7 +342,10 @@ async function rightArrowScroll() {
         }
     }
 }
+
 //---------------------------LIGHTBOX---------------------------//
+
+//---------------------------LIKE-DISLIKE---------------------------//
 
 async function addToLike() {
     const medias = await getMediaFromPhotographer();
@@ -414,7 +421,10 @@ function changeDomLike(parent) {
     }
 }
 
-//---------------------------TRI---------------------------
+//---------------------------LIKE-DISLIKE---------------------------//
+
+//---------------------------SORTING---------------------------//
+
 function openMenu() {
     const divDate = document.createElement( 'div' );
     divDate.setAttribute("class", "date");
@@ -422,16 +432,28 @@ function openMenu() {
     const divTitle = document.createElement( 'div' );
     divTitle.setAttribute("class", "title");
     divTitle.textContent = "Titre";
-    const divContent = document.createElement( 'div' );
-    divContent.appendChild(divDate);
-    divContent.appendChild(divTitle);
     let appendDiv = document.querySelector(".sortItems");
-    appendDiv.appendChild(divContent);
+    appendDiv.appendChild(divDate);
+    appendDiv.appendChild(divTitle);
+    const i = document.createElement( 'i' );
+    i.setAttribute("class", "fa fa-chevron-up");
+    i.setAttribute("onclick", "closeMenu()");
+    const replaceI = document.querySelector(".fa.fa-chevron-down");
+    replaceI.removeAttribute("class");
+    replaceI.appendChild(i);
 }
 
-//---------------------------TRI---------------------------
+function closeMenu() {
+    const parentDiv = document.querySelector(".sortItems");
+    const divDate = document.querySelector(".date");
+    const divTitle = document.querySelector(".title");
+    const i = document.querySelector(".fa.fa-chevron-up");
+    let firstRemovedElement = parentDiv.removeChild(divDate);
+    let secondRemovedElement = parentDiv.removeChild(divTitle);
+    i.removeAttribute("class");
+    const newI = document.createElement( 'i' );
+    newI.setAttribute("class", "fa fa-chevron-down");
+    i.appendChild(newI);
+}
 
-//-----------------------------------------------------------------
-//<i class="fa fa-chevron-up"></i>
-//<i class="fa fa-chevron-down"></i>
-//-----------------------------------------------------------------
+//---------------------------SORTING---------------------------//
