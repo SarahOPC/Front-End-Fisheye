@@ -461,37 +461,38 @@ function closeMenu() {
 
 async function displayMediaByPopularity() {
     const medias = await getMediaFromPhotographer();
-    console.log(medias);
     medias.sort((a, b) => {
         return b.likes - a.likes;
     })
-    console.log(medias);
     const main = document.querySelector("main");
     const mediaSection = document.querySelector(".photograph-body");
     main.removeChild(mediaSection);
+    const divMediaSection = document.createElement( 'div' );
+    divMediaSection.setAttribute("class", "photograph-body");
     const mediaModel = mediaFactory(medias);
     const getmediaDOM = mediaModel.getmediaDOM();
-    mediaSection.appendChild(getmediaDOM);
+    divMediaSection.appendChild(getmediaDOM);
+    main.appendChild(divMediaSection);
 }
 
 async function displayMediaByDate() {
     const medias = await getMediaFromPhotographer();
-    console.log(medias);
     medias.sort((a, b) => {
         return b.date - a.date;
     })
-    console.log(medias);
     const main = document.querySelector("main");
     const mediaSection = document.querySelector(".photograph-body");
     main.removeChild(mediaSection);
+    const divMediaSection = document.createElement( 'div' );
+    divMediaSection.setAttribute("class", "photograph-body");
     const mediaModel = mediaFactory(medias);
     const getmediaDOM = mediaModel.getmediaDOM();
-    mediaSection.appendChild(getmediaDOM);
+    divMediaSection.appendChild(getmediaDOM);
+    main.appendChild(divMediaSection);
 }
 
 async function displayMediaByTitle() {
     const medias = await getMediaFromPhotographer();
-    console.log(medias);
     medias.sort((a, b) => {
         const titleA = a.title.toUpperCase(); // ignore upper and lowercase
         const titleB = b.title.toUpperCase(); // ignore upper and lowercase
@@ -505,13 +506,15 @@ async function displayMediaByTitle() {
             return 0;
         }
     })
-    console.log(medias);
     const main = document.querySelector("main");
     const mediaSection = document.querySelector(".photograph-body");
     main.removeChild(mediaSection);
+    const divMediaSection = document.createElement( 'div' );
+    divMediaSection.setAttribute("class", "photograph-body");
     const mediaModel = mediaFactory(medias);
     const getmediaDOM = mediaModel.getmediaDOM();
-    mediaSection.appendChild(getmediaDOM);
+    divMediaSection.appendChild(getmediaDOM);
+    main.appendChild(divMediaSection);
 }
 
 //---------------------------SORTING---------------------------//
