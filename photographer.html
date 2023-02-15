@@ -35,21 +35,21 @@
   </section>
   <section>
     <div id="contact_modal">
-      <div class="modal" aria-label="Modal title" role="dialog" aria-modal="true" tabindex="-1">
-        <header aria-label="close modal">
+      <div class="modal" aria-label="Modal title" role="dialog" aria-modal="true" tabindex="-1" aria-labelledby="Contact me">
+        <header aria-label="Contact me">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="Close button" aria-label="close dialog" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="Close contact form button" aria-label="close contact form button" onclick="closeModal()" />
         </header>
 				<form aria-label="contact form">
           <div class="modal-form">
             <label for="userFirstName">Prénom</label>
-            <input type="text" id="userFirstName" name="userFirstName">
+            <input type="text" id="userFirstName" name="userFirstName" aria-labelledby="userFirstName">
 						<label for="userLastName">Nom</label>
-            <input type="text" id="userLastName" name="userLastName">
+            <input type="text" id="userLastName" name="userLastName" aria-labelledby="userLastName">
             <label for="userEmail">Email</label>
-            <input type="userEmail" id="userEmail" name="userEmail">
+            <input type="userEmail" id="userEmail" name="userEmail" aria-labelledby="userEmail">
             <label for="userMessage">Votre message</label>
-            <textarea id="userMessage" name="userMessage" rows="5"></textarea>
+            <textarea id="userMessage" name="userMessage" rows="5" aria-labelledby="userMessage"></textarea>
 					</div>
           <button aria-label="send" class="contact_button" id="contact_button_send" onclick="retrieveDataFromForm()">Envoyer</button>
 				</form>
@@ -57,13 +57,13 @@
 		</div>
   </section>
   <section>
-    <div id="myLightbox" class="myLightbox">
+    <div id="myLightbox" class="myLightbox" aria-label="image closeup view">
       <div class="lightbox" aria-label="Lightbox title" role="dialog" aria-modal="true" tabindex="-1">
         <header aria-label="close lightbox">
           <img src="assets/icons/redClose.svg" alt="Close button" aria-label="close dialog" onclick="closeLightbox()" />
         </header>
-        <i id="right-arrow" class="fa fa-chevron-right" onclick="rightArrowScroll()"></i>
-        <i id="left-arrow" class="fa fa-chevron-left" onclick="leftArrowScroll()"></i>
+        <i id="right-arrow" class="fa fa-chevron-right" aria-label="Next image" onclick="rightArrowScroll()"></i>
+        <i id="left-arrow" class="fa fa-chevron-left" aria-label="Previous image" onclick="leftArrowScroll()"></i>
         <div id="container_medias">
           <p class="title_medias_lb"></p>
         </div>

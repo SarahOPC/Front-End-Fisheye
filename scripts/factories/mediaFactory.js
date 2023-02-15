@@ -17,6 +17,7 @@ function mediaFactory(data) {
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
                 const pLikes = document.createElement( 'p' );
+                pLikes.setAttribute("aria-label", "likes");
                 pTitle.textContent = data[i].title;
                 pTitle.setAttribute("class", "myMedias");
                 pLikes.textContent = data[i].likes;
@@ -41,6 +42,7 @@ function mediaFactory(data) {
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
                 const pLikes = document.createElement( 'p' );
+                pLikes.setAttribute("aria-label", "likes");
                 pTitle.textContent = data[i].title;
                 pTitle.setAttribute("class", "myMedias");
                 pLikes.textContent = data[i].likes;
