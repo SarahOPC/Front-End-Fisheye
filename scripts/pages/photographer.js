@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 //Mettre le code JavaScript lié à la page photographer.html
 function retrieveIdInParams() {
     const queryString = window.location.search;
@@ -33,7 +35,7 @@ async function displayData() {
     const photographerModel = photographerFactory(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
-};
+}
 
 displayData();
 
@@ -54,7 +56,7 @@ async function getMediaFromPhotographer() {
                     date: photographerMedias.media[i].date
                 }
                 medias.push(media);
-            };
+            }
             if (photographerMedias.media[i].image == undefined) {
                 let media = 
                 {
@@ -76,7 +78,7 @@ async function displayMedia() {
     const mediaModel = mediaFactory(medias);
     const getmediaDOM = mediaModel.getmediaDOM();
     mediaSection.appendChild(getmediaDOM);
-};
+}
 
 displayMedia().then(()=>{
     addToLike();
@@ -195,7 +197,7 @@ async function leftArrowScroll() {
     
     if(currentImage !== null) {
         if(mediaArray.includes(currentImage.id)) {
-            currentMedia = mediaArray.indexOf(currentImage.id);
+            let currentMedia = mediaArray.indexOf(currentImage.id);
             // if there's already a media, remove it
             let currentImageVideoElement = container_medias.querySelector("img, video");
             if (currentImageVideoElement) {
@@ -227,7 +229,7 @@ async function leftArrowScroll() {
             }
         }
     } else if (mediaArray.includes(currentVideo.id)) {
-        currentMedia = mediaArray.indexOf(currentVideo.id);
+        let currentMedia = mediaArray.indexOf(currentVideo.id);
         // if there's already a media, remove it
         let currentImageVideoElement = container_medias.querySelector("img, video");
         if (currentImageVideoElement) {
@@ -280,7 +282,7 @@ async function rightArrowScroll() {
     
     if(currentImage !== null) {
         if(mediaArray.includes(currentImage.id)) {
-            currentMedia = mediaArray.indexOf(currentImage.id);
+            let currentMedia = mediaArray.indexOf(currentImage.id);
             // if there's already a media, remove it
             let currentImageVideoElement = container_medias.querySelector("img, video");
             if (currentImageVideoElement) {
@@ -312,7 +314,7 @@ async function rightArrowScroll() {
             }
         }
     } else if (mediaArray.includes(currentVideo.id)) {
-        currentMedia = mediaArray.indexOf(currentVideo.id);
+        let currentMedia = mediaArray.indexOf(currentVideo.id);
         // if there's already a media, remove it
         let currentImageVideoElement = container_medias.querySelector("img, video");
         if (currentImageVideoElement) {
@@ -510,7 +512,7 @@ async function displayMediaByTitle() {
         if (titleA > titleB) {
             return 1;
         }
-        if (titleA = titleB) {
+        if (titleA == titleB) {
             return 0;
         }
     })

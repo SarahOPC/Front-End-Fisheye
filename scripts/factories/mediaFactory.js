@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function mediaFactory(data) {
     const name = document.getElementsByTagName( 'h2' )[0].innerText;
     const firstName = name.split(" ").shift();
@@ -56,7 +57,7 @@ function mediaFactory(data) {
                 article.appendChild(img);
                 article.appendChild(infos);
                 div.appendChild(article);
-            };
+            }
         }
         return div;
     }
