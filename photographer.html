@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+  <head title="Fisheye work of each photographer informations">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <title>Fisheye photographe</title>
   </head>
   <body>
     <section>
-      <header aria-label="Each photograph presentation">
-        <a href="./index.html" aria-label="link to main page">
+      <header aria-labelledby="Each photograph presentation" aria-label="presentation">
+        <a href="./index.html" aria-labelledby="link to main page" aria-label="link">
           <img src="assets/images/logo.png" alt="Fisheye Home Page" aria-label="Fisheye Home Page" class="logo" />
         </a>
       </header>
       <main id="main" aria-label="Contact button">
         <div class="photograph-header">
-          <button aria-label="show-modal" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+          <button aria-label="show-modal" role="button" class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </div>
         <div class="sorting">
           <div class="sort">Trier par :
@@ -38,7 +38,7 @@
       <div class="modal" aria-label="Modal title" role="dialog" aria-modal="true" tabindex="-1" aria-labelledby="Contact me">
         <header aria-label="Contact me">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="Close contact form button" aria-label="close contact form button" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" role="button" alt="Close contact form button" aria-label="close contact form button" onclick="closeModal()" />
         </header>
 				<form aria-label="contact form">
           <div class="modal-form">
@@ -51,7 +51,7 @@
             <label for="userMessage">Votre message</label>
             <textarea id="userMessage" name="userMessage" rows="5" aria-labelledby="userMessage"></textarea>
 					</div>
-          <button aria-label="send" class="contact_button" id="contact_button_send" onclick="retrieveDataFromForm()">Envoyer</button>
+          <button aria-label="send" type="button" class="contact_button" id="contact_button_send" onclick="retrieveDataFromForm()">Envoyer</button>
 				</form>
 			</div>
 		</div>
@@ -60,7 +60,7 @@
     <div id="myLightbox" class="myLightbox" aria-label="image closeup view">
       <div class="lightbox" aria-label="Lightbox title" role="dialog" aria-modal="true" tabindex="-1">
         <header aria-label="close lightbox">
-          <img src="assets/icons/redClose.svg" alt="Close button" aria-label="close dialog" onclick="closeLightbox()" />
+          <img src="assets/icons/redClose.svg" role="button" alt="Close button" aria-label="close dialog" onclick="closeLightbox()" />
         </header>
         <i id="right-arrow" class="fa fa-chevron-right" aria-label="Next image" onclick="rightArrowScroll()"></i>
         <i id="left-arrow" class="fa fa-chevron-left" aria-label="Previous image" onclick="leftArrowScroll()"></i>
