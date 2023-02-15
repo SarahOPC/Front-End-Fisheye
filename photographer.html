@@ -9,21 +9,22 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header aria-label="Page de présentation de chaque photographe">
-      <a href="./index.html">
-        <img src="assets/images/logo.png" alt="logo Fisheye" aria-label="logo Fisheye" class="logo" />
-      </a>
-    </header>
-    <main id="main" aria-label="bouton contact">
-      <div class="photograph-header">
-        <button aria-label="show-modal" class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-      <div class="sorting">
-        <div class="sort">Trier par :
-          <div class="sortItems">
+    <section>
+      <header aria-label="Each photograph presentation">
+        <a href="./index.html" aria-label="link to main page">
+          <img src="assets/images/logo.png" alt="Fisheye Home Page" aria-label="Fisheye Home Page" class="logo" />
+        </a>
+      </header>
+      <main id="main" aria-label="Contact button">
+        <div class="photograph-header">
+          <button aria-label="show-modal" class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        </div>
+        <div class="sorting">
+          <div class="sort">Trier par :
+            <div class="sortItems" aria-label="sorted">
             <div>
-              <div class="popularity" onclick="displayMediaByPopularity()">Popularité</div>
-              <i class="fa fa-chevron-down" onclick="openMenu()"></i>
+              <button class="popularity" onclick="displayMediaByPopularity()" role="listbox" aria-activedescendant="" aria-selected="" aria-labelledby="sorted">Popularité</button>
+              <i class="fa fa-chevron-down" onclick="openMenu()" role="button" aria-haspopup="listbox" aria-expanded></i>
             </div>
           </div>
         </div>
@@ -31,14 +32,16 @@
       <div class="photograph-body">
       </div>
     </main>
+  </section>
+  <section>
     <div id="contact_modal">
-			<div class="modal" aria-label="Modal title" role="dialog" aria-modal="true" tabindex="-1">
-				<header aria-label="close modal">
+      <div class="modal" aria-label="Modal title" role="dialog" aria-modal="true" tabindex="-1">
+        <header aria-label="close modal">
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="bouton fermer" aria-label="close dialog" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="Close button" aria-label="close dialog" onclick="closeModal()" />
         </header>
 				<form aria-label="contact form">
-					<div class="modal-form">
+          <div class="modal-form">
             <label for="userFirstName">Prénom</label>
             <input type="text" id="userFirstName" name="userFirstName">
 						<label for="userLastName">Nom</label>
@@ -52,11 +55,12 @@
 				</form>
 			</div>
 		</div>
-
+  </section>
+  <section>
     <div id="myLightbox" class="myLightbox">
       <div class="lightbox" aria-label="Lightbox title" role="dialog" aria-modal="true" tabindex="-1">
         <header aria-label="close lightbox">
-          <img src="assets/icons/redClose.svg" alt="bouton fermer" aria-label="close dialog" onclick="closeLightbox()" />
+          <img src="assets/icons/redClose.svg" alt="Close button" aria-label="close dialog" onclick="closeLightbox()" />
         </header>
         <i id="right-arrow" class="fa fa-chevron-right" onclick="rightArrowScroll()"></i>
         <i id="left-arrow" class="fa fa-chevron-left" onclick="leftArrowScroll()"></i>
@@ -65,6 +69,7 @@
         </div>
       </div>
     </div>
+  </section>
 
     <script src="./data/photographers.js"></script>
     <script src="./scripts/factories/photographerFactory.js"></script>

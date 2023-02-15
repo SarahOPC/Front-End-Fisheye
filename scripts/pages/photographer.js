@@ -428,17 +428,25 @@ function changeDomLike(parent) {
 //---------------------------SORTING---------------------------//
 
 function openMenu() {
-    const divDate = document.createElement( 'div' );
-    divDate.setAttribute("class", "date");
-    divDate.setAttribute("onclick", "displayMediaByDate()");
-    divDate.textContent = "Date";
-    const divTitle = document.createElement( 'div' );
-    divTitle.setAttribute("class", "title");
-    divTitle.setAttribute("onclick", "displayMediaByTitle()");
-    divTitle.textContent = "Titre";
+    const buttonDate = document.createElement( 'button' );
+    buttonDate.setAttribute("class", "date");
+    buttonDate.setAttribute("onclick", "displayMediaByDate()");
+    buttonDate.textContent = "Date";
+    const buttonTitle = document.createElement( 'button' );
+    buttonTitle.setAttribute("class", "title");
+    buttonTitle.setAttribute("onclick", "displayMediaByTitle()");
+    buttonTitle.textContent = "Titre";
+    buttonDate.setAttribute("role", "listbox");
+    buttonDate.setAttribute("aria-activedescendant", "");
+    buttonDate.setAttribute("aria-selected", "");
+    buttonDate.setAttribute("aria-labelledby", "sorted");
+    buttonTitle.setAttribute("role", "listbox");
+    buttonTitle.setAttribute("aria-activedescendant", "");
+    buttonTitle.setAttribute("aria-selected", "");
+    buttonTitle.setAttribute("aria-labelledby", "sorted");
     let appendDiv = document.querySelector(".sortItems");
-    appendDiv.appendChild(divDate);
-    appendDiv.appendChild(divTitle);
+    appendDiv.appendChild(buttonDate);
+    appendDiv.appendChild(buttonTitle);
     const replacedI = document.querySelector(".fa.fa-chevron-down");
     replacedI.removeAttribute("class");
     replacedI.setAttribute("class", "fa fa-chevron-up");
@@ -448,11 +456,11 @@ function openMenu() {
 
 function closeMenu() {
     const parentDiv = document.querySelector(".sortItems");
-    const divDate = document.querySelector(".date");
-    const divTitle = document.querySelector(".title");
+    const buttonDate = document.querySelector(".date");
+    const buttonTitle = document.querySelector(".title");
     const i = document.querySelector(".fa.fa-chevron-up");
-    let firstRemovedElement = parentDiv.removeChild(divDate);
-    let secondRemovedElement = parentDiv.removeChild(divTitle);
+    let firstRemovedElement = parentDiv.removeChild(buttonDate);
+    let secondRemovedElement = parentDiv.removeChild(buttonTitle);
     i.removeAttribute("class");
     i.setAttribute("class", "fa fa-chevron-down");
     i.setAttribute("onclick", "openMenu()");
