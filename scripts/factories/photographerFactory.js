@@ -6,7 +6,6 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
-        article.setAttribute("tabindex", "0");
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", "photographer profile photo");
@@ -32,11 +31,6 @@ function photographerFactory(data) {
         div.appendChild(h4);
         div.appendChild(h5);
         div.appendChild(h6);
-        article.addEventListener('keydown', (event) => {
-            if(event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-            }
-        })
         return (article);
     }
     return { name, picture, city, country, getUserCardDOM }

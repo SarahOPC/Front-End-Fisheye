@@ -126,43 +126,53 @@ displayFixedDiv();
 //---------------------------LIGHTBOX---------------------------//
 
 function openLightbox() {
-    const myMedia = document.querySelectorAll(".myMedias");
-    myMedia.forEach(media => media.addEventListener('click', function() {
-        if (media.controls === true) {
-            const myNewMedia = document.createElement( 'video' );
-            myNewMedia.src = media.src;
-            myNewMedia.setAttribute("type", "video/mp4");
-            myNewMedia.setAttribute("controls", "");
-            let titleArray = myNewMedia.src.split("/");
-            let titleAndExtension = titleArray[titleArray.length - 1];
-            let title = titleAndExtension.split(".")[0];
-            myNewMedia.setAttribute("id", title);
-            const container_medias = document.getElementById("container_medias");
-            container_medias.appendChild(myNewMedia);
-            const lightbox = document.getElementById("myLightbox");
-            lightbox.style.display = "block";
-            const bodyHeader = document.querySelector("body header");
-            const bodyMain = document.querySelector("body main");
-            bodyHeader.setAttribute("class", "modalBlur");
-            bodyMain.setAttribute("class", "modalBlur");
-        } else {
-            const myNewMedia = document.createElement( 'img' );
-            myNewMedia.src = media.src;
-            let titleArray = myNewMedia.src.split("/");
-            let titleAndExtension = titleArray[titleArray.length - 1];
-            let title = titleAndExtension.split(".")[0];
-            myNewMedia.setAttribute("id", title);
-            myNewMedia.setAttribute("alt", title);
-            const container_medias = document.getElementById("container_medias");
-            container_medias.appendChild(myNewMedia);
-            const lightbox = document.getElementById("myLightbox");
-            lightbox.style.display = "block";
-            const bodyHeader = document.querySelector("body header");
-            const bodyMain = document.querySelector("body main");
-            bodyHeader.setAttribute("class", "modalBlur");
-            bodyMain.setAttribute("class", "modalBlur");
-        }
-    }))
+    const mediaElements = document.querySelectorAll("article img, article video");
+    mediaElements.forEach((media, index) => {
+        const mediaId = `media-${index + 1}`; // Generation of a unique Id
+        media.setAttribute("id", mediaId);
+        media.setAttribute("tabindex", "0");
+        media.addEventListener("click", () => handleClick(mediaId));
+        media.addEventListener("keypress", (event) => handleKeypress(mediaId, event));
+    })
+}
+
+function videoLightbox(mediaId) {
+    const media = document.getElementById(mediaId);
+    const myNewMedia = document.createElement( 'video' );
+    myNewMedia.src = media.src;
+    myNewMedia.setAttribute("type", "video/mp4");
+    myNewMedia.setAttribute("controls", "");
+    let titleArray = myNewMedia.src.split("/");
+    let titleAndExtension = titleArray[titleArray.length - 1];
+    let title = titleAndExtension.split(".")[0];
+    myNewMedia.setAttribute("id", title);
+    const container_medias = document.getElementById("container_medias");
+    container_medias.appendChild(myNewMedia);
+    const lightbox = document.getElementById("myLightbox");
+    lightbox.style.display = "block";
+    const bodyHeader = document.querySelector("body header");
+    const bodyMain = document.querySelector("body main");
+    bodyHeader.setAttribute("class", "modalBlur");
+    bodyMain.setAttribute("class", "modalBlur");
+}
+
+function imageLightbox(mediaId) {
+    const media = document.getElementById(mediaId);
+    const myNewMedia = document.createElement( 'img' );
+    myNewMedia.src = media.src;
+    let titleArray = myNewMedia.src.split("/");
+    let titleAndExtension = titleArray[titleArray.length - 1];
+    let title = titleAndExtension.split(".")[0];
+    myNewMedia.setAttribute("id", title);
+    myNewMedia.setAttribute("alt", title);
+    const container_medias = document.getElementById("container_medias");
+    container_medias.appendChild(myNewMedia);
+    const lightbox = document.getElementById("myLightbox");
+    lightbox.style.display = "block";
+    const bodyHeader = document.querySelector("body header");
+    const bodyMain = document.querySelector("body main");
+    bodyHeader.setAttribute("class", "modalBlur");
+    bodyMain.setAttribute("class", "modalBlur");
 }
 
 function closeLightbox() {
@@ -530,17 +540,24 @@ async function displayMediaByTitle() {
 //---------------------------SORTING---------------------------//
 
 //---------------------------KEYBOARD NAVIGATION---------------------------//
-window.onload = keyBoardFunction;
 
-function keyBoardFunction() {
-    const myMedia = document.querySelectorAll(".myMedias");
-    myMedia.forEach((media) => {
-        media.addEventListener('keydown', (event) => {
-            console.log("lol");
-            if(event.key === 'Enter') {
-                console.log('relol');
-                openLightbox();
-            }
-        })
-    })
+function handleClick(mediaId) {
+    const media = document.getElementById(mediaId);
+    if (media.controls === true) {
+        videoLightbox(mediaId);
+    } else {
+        imageLightbox(mediaId);
+    }
+}
+
+function handleKeypress(mediaId, event) {
+    const media = document.getElementById(mediaId);
+    if(event.key === "Enter") {
+        media.focus();
+        if (media.controls === true) {
+            videoLightbox(mediaId);
+        } else {
+            imageLightbox(mediaId);
+        }
+    }
 }
