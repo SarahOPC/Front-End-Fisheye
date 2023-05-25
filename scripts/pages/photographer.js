@@ -127,17 +127,25 @@ displayFixedDiv();
 
 function openLightbox() {
     const mediaElements = document.querySelectorAll("article img, article video");
-    mediaElements.forEach((media, index) => {
-        const mediaId = `media-${index + 1}`; // Generation of a unique Id
-        media.setAttribute("id", mediaId);
-        media.setAttribute("tabindex", "0");
-        media.addEventListener("click", () => handleClick(mediaId));
-        media.addEventListener("keypress", (event) => handleKeypress(mediaId, event));
+    mediaElements.forEach((media, event) => {
+        if(event.key === "Enter") {
+            media.focus();
+            if (media.controls === true) {
+                videoLightbox(media);
+            } else {
+                imageLightbox(media);
+            }
+        } else if(event === "click") {
+            if (media.controls === true) {
+                videoLightbox(media);
+            } else {
+                imageLightbox(media);
+            }
+        }
     })
 }
 
-function videoLightbox(mediaId) {
-    const media = document.getElementById(mediaId);
+function videoLightbox(media) {
     const myNewMedia = document.createElement( 'video' );
     myNewMedia.src = media.src;
     myNewMedia.setAttribute("type", "video/mp4");
@@ -156,8 +164,7 @@ function videoLightbox(mediaId) {
     bodyMain.setAttribute("class", "modalBlur");
 }
 
-function imageLightbox(mediaId) {
-    const media = document.getElementById(mediaId);
+function imageLightbox(media) {
     const myNewMedia = document.createElement( 'img' );
     myNewMedia.src = media.src;
     let titleArray = myNewMedia.src.split("/");
@@ -538,26 +545,3 @@ async function displayMediaByTitle() {
 }
 
 //---------------------------SORTING---------------------------//
-
-//---------------------------KEYBOARD NAVIGATION---------------------------//
-
-function handleClick(mediaId) {
-    const media = document.getElementById(mediaId);
-    if (media.controls === true) {
-        videoLightbox(mediaId);
-    } else {
-        imageLightbox(mediaId);
-    }
-}
-
-function handleKeypress(mediaId, event) {
-    const media = document.getElementById(mediaId);
-    if(event.key === "Enter") {
-        media.focus();
-        if (media.controls === true) {
-            videoLightbox(mediaId);
-        } else {
-            imageLightbox(mediaId);
-        }
-    }
-}
