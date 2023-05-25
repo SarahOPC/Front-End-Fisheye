@@ -6,19 +6,20 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
+        article.setAttribute("tabindex", "0");
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", "photographer profile photo");
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
-        h2.ariaLabel = name;
+        h2.setAttribute("ariaLabel", "name");
         const a = document.createElement( 'a' );
         const linkDiv = document.createElement( 'div' );
         linkDiv.appendChild(img);
         linkDiv.appendChild(h2);
         a.appendChild(linkDiv);
         a.href = `./photographer.html?id=${id}`;
-        a.ariaLabel = "Link to the photographer's personal page";
+        a.setAttribute("ariaLabel", "Link to the photographer's personal page");
         const h4 = document.createElement( 'h4' );
         h4.textContent = city + ', ' + country;
         const h5 = document.createElement( 'h5' );
@@ -31,6 +32,11 @@ function photographerFactory(data) {
         div.appendChild(h4);
         div.appendChild(h5);
         div.appendChild(h6);
+        article.addEventListener('keydown', (event) => {
+            if(event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+            }
+        })
         return (article);
     }
     return { name, picture, city, country, getUserCardDOM }

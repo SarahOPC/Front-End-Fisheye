@@ -29,8 +29,14 @@ function mediaFactory(data) {
                 infos.appendChild(pLikes);
                 const article = document.createElement( 'article' );
                 article.setAttribute("class", "work");
+                article.setAttribute("tabindex", "0");
                 article.appendChild(videos);
                 article.appendChild(infos);
+                article.addEventListener('keydown', (event) => {
+                    if(event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                    }
+                })
                 div.appendChild(article);
             } else {
                 const picture = `./assets/images/${firstName}/${data[i].image}`;
@@ -54,8 +60,14 @@ function mediaFactory(data) {
                 infos.appendChild(pLikes);
                 const article = document.createElement( 'article' );
                 article.setAttribute("class", "work");
+                article.setAttribute("tabindex", "0");
                 article.appendChild(img);
                 article.appendChild(infos);
+                article.addEventListener('keydown', (event) => {
+                    if(event.key === ' ') {
+                        event.preventDefault();
+                    }
+                })
                 div.appendChild(article);
             }
         }

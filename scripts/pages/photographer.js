@@ -528,3 +528,19 @@ async function displayMediaByTitle() {
 }
 
 //---------------------------SORTING---------------------------//
+
+//---------------------------KEYBOARD NAVIGATION---------------------------//
+window.onload = keyBoardFunction;
+
+function keyBoardFunction() {
+    const myMedia = document.querySelectorAll(".myMedias");
+    myMedia.forEach((media) => {
+        media.addEventListener('keydown', (event) => {
+            console.log("lol");
+            if(event.key === 'Enter') {
+                console.log('relol');
+                openLightbox();
+            }
+        })
+    })
+}
