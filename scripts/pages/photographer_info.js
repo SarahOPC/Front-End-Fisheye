@@ -125,24 +125,21 @@ displayFixedDiv();
 
 //---------------------------LIGHTBOX---------------------------//
 
-function openLightbox() {
-    const mediaElements = document.querySelectorAll("article img, article video");
-    mediaElements.forEach((media, event) => {
-        if(event.key === "Enter") {
-            media.focus();
-            if (media.controls === true) {
-                videoLightbox(media);
-            } else {
-                imageLightbox(media);
-            }
-        } else if(event === "click") {
-            if (media.controls === true) {
-                videoLightbox(media);
-            } else {
-                imageLightbox(media);
-            }
+function openLightbox(event, id) {
+    const media = document.getElementById(id);
+    if(event === 13) { // keycode of Enter key
+        if (media.controls === true) {
+            videoLightbox(media);
+        } else {
+            imageLightbox(media);
         }
-    })
+    } else if(event === 'click') {
+        if (media.controls === true) {
+            videoLightbox(media);
+        } else {
+            imageLightbox(media);
+        }
+    }
 }
 
 function videoLightbox(media) {

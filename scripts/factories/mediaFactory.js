@@ -12,10 +12,11 @@ function mediaFactory(data) {
                 videos.setAttribute("src" , videoMedia);
                 videos.setAttribute("type", "video/mp4");
                 videos.setAttribute("controls", "");
-                videos.setAttribute("onclick", "openLightbox()");
-                videos.setAttribute("onkeydown", "openLightbox()");
+                videos.setAttribute("onclick", `openLightbox('click', id)`);
+                videos.setAttribute("onkeydown", `openLightbox('keydown', id)`);
                 videos.setAttribute("class", "myMedias");
                 videos.setAttribute("tabindex", "0");
+                videos.setAttribute("id", `media${i+1}`);
                 const infos = document.createElement( 'div' );
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
@@ -39,10 +40,13 @@ function mediaFactory(data) {
                 const img = document.createElement( 'img' );
                 img.setAttribute("src", picture);
                 img.setAttribute("alt", data[i].title);
-                img.setAttribute("onclick", "openLightbox()");
-                img.setAttribute("onkeydown", "openLightbox()");
+                img.setAttribute("onclick", `openLightbox('click', id)`);
+                img.setAttribute("onkeydown", `openLightbox(event.keyCode || event.which, id)`);
+                // event.keyCode property is used for older browsers
+                // event.which property is used for newer browsers
                 img.setAttribute("class", "myMedias");
                 img.setAttribute("tabindex", "0");
+                img.setAttribute("id", `media${i+1}`);
                 const infos = document.createElement( 'div' );
                 infos.setAttribute("class", "infos");
                 const pTitle = document.createElement( 'p' );
