@@ -56,11 +56,11 @@
 			</div>
 		</div>
   </section>
-  <section>
+  <section onkeydown="handleEscapeKey(event)">
     <div id="myLightbox" class="myLightbox" aria-label="image closeup view">
       <div class="lightbox" aria-label="Lightbox title" role="dialog" aria-modal="true" tabindex="-1">
         <header aria-label="close lightbox">
-          <img src="assets/icons/redClose.svg" role="button" alt="Close button" aria-label="close dialog" onclick="closeLightbox()" />
+          <img src="assets/icons/redClose.svg" role="button" alt="Close button" aria-label="close dialog" onclick="closeLightbox()"/>
         </header>
         <i id="right-arrow" class="fa fa-chevron-right" aria-label="Next image" onclick="rightArrowScroll()"></i>
         <i id="left-arrow" class="fa fa-chevron-left" aria-label="Previous image" onclick="leftArrowScroll()"></i>

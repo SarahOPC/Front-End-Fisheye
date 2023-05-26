@@ -191,6 +191,12 @@ function closeLightbox() {
     location.reload();
 }
 
+function handleEscapeKey(event) {
+    if(event.key === 'Escape') {
+        closeLightbox();
+    }
+}
+
 async function leftArrowScroll() {
     let photographerMediaArray = await getMediaFromPhotographer();
     // map() method create a new array with the result of the split
