@@ -9,6 +9,8 @@ function photographerFactory(data) {
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", "photographer profile photo");
+        img.setAttribute("tabindex", "0");
+        img.setAttribute("keydown", `./photographer.html?id=${id}`)
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         h2.setAttribute("ariaLabel", "name");
