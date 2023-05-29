@@ -57,7 +57,7 @@
 		</div>
   </section>
   <section onkeydown="handleEscapeKey(event)">
-    <div id="myLightbox" class="myLightbox" aria-label="image closeup view">
+    <div id="myLightbox" class="myLightbox" aria-label="image closeup view" onkeydown="handleLightboxKeyBoardNavigation(event)">
       <div class="lightbox" aria-label="Lightbox title" role="dialog" aria-modal="true" tabindex="-1">
         <header aria-label="close lightbox">
           <img src="assets/icons/redClose.svg" role="button" alt="Close button" aria-label="close dialog" onclick="closeLightbox()"/>

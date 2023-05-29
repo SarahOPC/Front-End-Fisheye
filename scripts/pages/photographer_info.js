@@ -127,19 +127,22 @@ displayFixedDiv();
 
 function openLightbox(event, id) {
     const media = document.getElementById(id);
-    if(event.keyCode === 13) { // keycode of Enter key
+    if(event === 13) { // keycode of Enter key
         if (media.controls === true) {
             videoLightbox(media);
         } else {
             imageLightbox(media);
         }
-    } else if(event.keyCode === 'click') {
+    } else if(event === 'click') {
         if (media.controls === true) {
             videoLightbox(media);
         } else {
             imageLightbox(media);
         }
     }
+    const lightbox = document.getElementById("myLightbox");
+    lightbox.setAttribute("tabindex", "0");
+    lightbox.focus();
 }
 
 function videoLightbox(media) {
@@ -364,6 +367,15 @@ async function rightArrowScroll() {
             video.setAttribute("controls", "");
             container_medias.appendChild(video);
         }
+    }
+}
+
+function handleLightboxKeyBoardNavigation(event) {
+    if(event.keyCode === 37) {
+        leftArrowScroll();
+    }
+    if(event.keyCode === 39) {
+        rightArrowScroll();
     }
 }
 
