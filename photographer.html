@@ -24,7 +24,7 @@
             <div class="sortItems" aria-label="sorted">
             <div>
               <button class="popularity" onclick="displayMediaByPopularity()" role="listbox" aria-activedescendant="" aria-selected="" aria-labelledby="sorted" tabindex="0" onkeydown="keyBoardNavigationOpenMenu(event)">Popularité</button>
-              <i class="fa fa-chevron-down" onclick="openMenu()" role="button" aria-haspopup="listbox" aria-expanded></i>
+              <span class="fa fa-chevron-down" onclick="openMenu()" role="button" aria-haspopup="listbox" aria-expanded></span>
             </div>
           </div>
         </div>
@@ -62,8 +62,8 @@
         <header aria-label="close lightbox">
           <img src="assets/icons/redClose.svg" role="button" alt="Close button" aria-label="close dialog" onclick="closeLightbox()"/>
         </header>
-        <i id="right-arrow" class="fa fa-chevron-right" aria-label="Next image" onclick="rightArrowScroll()"></i>
-        <i id="left-arrow" class="fa fa-chevron-left" aria-label="Previous image" onclick="leftArrowScroll()"></i>
+        <span id="right-arrow" class="fa fa-chevron-right" aria-label="Next image" onclick="rightArrowScroll()"></span>
+        <span id="left-arrow" class="fa fa-chevron-left" aria-label="Previous image" onclick="leftArrowScroll()"></span>
         <div id="container_medias">
           <p class="title_medias_lb"></p>
         </div>
