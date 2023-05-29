@@ -15,7 +15,7 @@
           <img src="assets/images/logo.png" alt="Fisheye Home Page" aria-label="Fisheye Home Page" class="logo" />
         </a>
       </header>
-      <main id="main" aria-label="Contact button">
+      <main id="main" aria-label="Contact button" onkeydown="handleModalEscapeKey(event)">
         <div class="photograph-header">
           <button aria-label="contact me" role="button" class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </div>
@@ -51,7 +51,7 @@
             <label for="userMessage">Votre message</label>
             <textarea id="userMessage" name="userMessage" rows="5" aria-labelledby="userMessage"></textarea>
 					</div>
-          <button aria-label="send" type="button" class="contact_button" id="contact_button_send" onclick="retrieveDataFromForm()">Envoyer</button>
+          <button aria-label="send" type="button" class="contact_button" id="contact_button_send" onclick="retrieveDataFromForm()" onkeydown="retrieveDataFromForm(event)">Envoyer</button>
 				</form>
 			</div>
 		</div>
