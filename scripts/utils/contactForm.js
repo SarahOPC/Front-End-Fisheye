@@ -47,7 +47,7 @@ function retrieveDataFromForm(event) {
     console.log(userLastName);
     console.log(userEmail);
     console.log(userMessage);
-    if(event === 13) {
+    if(event.keyCode === 13) {
         console.log(userFirstName);
         console.log(userLastName);
         console.log(userEmail);

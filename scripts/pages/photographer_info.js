@@ -127,13 +127,13 @@ displayFixedDiv();
 
 function openLightbox(event, id) {
     const media = document.getElementById(id);
-    if(event === 13) { // keycode of Enter key
+    if(event.keyCode === 13) { // keycode of Enter key
         if (media.controls === true) {
             videoLightbox(media);
         } else {
             imageLightbox(media);
         }
-    } else if(event === 'click') {
+    } else if(event.keyCode === 'click') {
         if (media.controls === true) {
             videoLightbox(media);
         } else {
@@ -474,6 +474,12 @@ function openMenu() {
     replacedI.setAttribute("class", "fa fa-chevron-up");
     replacedI.setAttribute("onclick", "closeMenu()");
     return;
+}
+
+function keyBoardNavigationOpenMenu(event) {
+    if(event.keyCode === 13) {
+        openMenu();
+    }
 }
 
 function closeMenu() {
