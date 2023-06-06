@@ -19,6 +19,7 @@ function closeModal() {
     const bodyMain = document.querySelector("body main");
     bodyHeader.removeAttribute("class");
     bodyMain.removeAttribute("class");
+    location.reload();
 }
 
 function handleModalEscapeKey(event) {
